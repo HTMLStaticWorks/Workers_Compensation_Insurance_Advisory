@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resources | WorkGuard Advisory</title>
+    <link rel="icon" type="image/svg+xml" href="assets/logo/favicon.svg">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+    
+    <style>
+        .page-header {
+            padding-top: calc(var(--header-height) + 6rem);
+            padding-bottom: 4rem;
+            background: var(--bg-secondary);
+        }
+
+        /* Editorial Cards */
+        .resource-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+        .resource-card {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            transition: all var(--transition-base);
+            display: flex;
+            flex-direction: column;
+        }
+        .resource-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--blue-primary);
+        }
+        .resource-img-placeholder {
+            height: 200px;
+            background: var(--bg-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+        }
+        .resource-content {
+            padding: 2rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .resource-category {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--blue-primary);
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        .resource-title {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+        }
+        .resource-action {
+            margin-top: auto;
+            padding-top: 1.5rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            transition: color var(--transition-fast);
+            cursor: pointer;
+        }
+        .resource-card:hover .resource-action {
+            color: var(--blue-primary);
+        }
+        .resource-card:hover .resource-action svg {
+            transform: translateX(5px);
+        }
+        [dir="rtl"] .resource-card:hover .resource-action svg {
+            transform: translateX(-5px);
+        }
+
+        /* Featured Resource */
+        .featured-resource {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            margin-top: 4rem;
+        }
+        .featured-content {
+            padding: 4rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .featured-visual {
+            background: var(--blue-primary);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .checklist-mockup {
+            background: #FFF;
+            width: 70%;
+            height: 80%;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-lg);
+            padding: 2rem;
+            transform: rotate(2deg);
+            color: #1A1A1A;
+        }
+        .mockup-line {
+            height: 8px;
+            background: #F3F3F0;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+        }
+
+        /* Newsletter */
+        .newsletter-form {
+            display: flex;
+            max-width: 500px;
+            margin: 2rem auto 0;
+            gap: 1rem;
+        }
+
+        @media (max-width: 1024px) {
+            .resource-grid { grid-template-columns: repeat(2, 1fr) !important; }
+            .featured-resource { grid-template-columns: 1fr; }
+            .featured-visual { min-height: 400px; }
+        }
+        @media (max-width: 768px) {
+            .resource-grid { grid-template-columns: repeat(2, 1fr) !important; }
+            .newsletter-form { flex-direction: column; }
+            .featured-content { padding: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <header class="navbar">
+        <div class="container navbar-container">
+            <a href="index.html" class="logo" aria-label="WorkGuard Home">
+                <div style="display: flex; align-items: center; gap: 0.75rem;"><img src="assets/logo/favicon.svg" alt="WorkGuard Icon" width="32" height="32"><span style="font-family: var(--font-heading); font-weight: 800; font-size: 1.5rem; letter-spacing: -0.02em; color: var(--text-primary); text-transform: uppercase;">WorkGuard</span></div>
+            </a>
+            <nav class="nav-links">
+                <a href="index.html" class="nav-link">Home 1</a>
+                <a href="home-2.html" class="nav-link">Home 2</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="services.html" class="nav-link">Services</a>
+                <a href="coverage.html" class="nav-link">Coverage</a>
+                <a href="claims-risk.html" class="nav-link">Claims & Risk</a>
+                <a href="resources.html" class="nav-link active">Resources</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+                <a href="dashboard.html" class="nav-link">Dashboard</a>
+            </nav>
+            <div class="nav-controls">
+                <button class="icon-btn js-theme-toggle" aria-label="Toggle Theme"></button>
+                <button class="icon-btn js-dir-toggle" aria-label="Toggle RTL" style="display: flex;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 9H7M21 9L17 5M21 9L17 13M3 15h14M3 15l4-4M3 15l4 4"/>
+                    </svg>
+                </button>
+                <a href="login.html" class="btn btn-primary" style="padding: 0.5rem 1.25rem;">Login</a>
+                <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+            </div>
+        </div>
+    </header>
+    
+    <div class="mobile-menu">
+        <button class="icon-btn js-menu-close" aria-label="Close Menu" style="align-self: flex-end; margin-bottom: 2rem; margin-top: -3rem; margin-right: -1rem;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+        </button>
+        <nav class="mobile-nav-links">
+            <a href="index.html" class="mobile-nav-link">Home 1</a>
+            <a href="home-2.html" class="mobile-nav-link">Home 2</a>
+            <a href="about.html" class="mobile-nav-link">About</a>
+            <a href="services.html" class="mobile-nav-link">Services</a>
+            <a href="coverage.html" class="mobile-nav-link">Coverage</a>
+            <a href="claims-risk.html" class="mobile-nav-link">Claims & Risk</a>
+            <a href="resources.html" class="mobile-nav-link text-blue">Resources</a>
+            <a href="contact.html" class="mobile-nav-link">Contact</a>
+            <a href="dashboard.html" class="mobile-nav-link">Dashboard</a>
+        </nav>
+        <div class="mobile-controls" style="display: flex; justify-content: center; gap: 1rem; margin-top: 2rem; margin-bottom: 2rem;">
+            <button class="icon-btn js-theme-toggle" aria-label="Toggle Theme"></button>
+            <button class="icon-btn js-dir-toggle" aria-label="Toggle RTL">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 9H7M21 9L17 5M21 9L17 13M3 15h14M3 15l4-4M3 15l4 4"/>
+                </svg>
+            </button>
+        </div>
+        <a href="login.html" class="btn btn-primary" style="text-align: center; width: 100%; margin-top: auto;">Login</a>
+    </div>
+
+    <main>
+        <!-- SECTION 01 — HERO -->
+        <section class="page-header js-reveal">
+            <div class="container text-center" style="max-width: 900px;">
+                <h1 class="text-h1">Practical knowledge for safer, better-managed workplaces.</h1>
+            </div>
+        </section>
+        <!-- SECTION 02 — FEATURED RESOURCE -->
+        <section class="section pt-0 js-reveal">
+            <div class="container">
+                <div class="featured-resource">
+                    <div class="featured-content">
+                        <span class="badge" style="align-self: flex-start; margin-bottom: 1.5rem;">Featured Checklist</span>
+                        <h2 class="text-h2" style="margin-bottom: 1.5rem;">Workers’ Compensation Coverage Review Checklist</h2>
+                        <ul class="text-secondary" style="list-style: none; padding: 0; margin-bottom: 2rem; display: flex; flex-direction: column; gap: 0.5rem;">
+                            <li><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="var(--blue-primary)" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Policy details and classifications</li>
+                            <li><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="var(--blue-primary)" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Employee information and payroll data</li>
+                            <li><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="var(--blue-primary)" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Claims history (Loss Runs)</li>
+                            <li><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="var(--blue-primary)" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Safety documentation</li>
+                            <li><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="var(--blue-primary)" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Compliance records</li>
+                        </ul>
+                        <button class="btn btn-primary" data-modal="modal-checklist" style="align-self: flex-start;">View Checklist</button>
+                    </div>
+                    <div class="featured-visual">
+                        <div class="checklist-mockup">
+                            <h4 style="margin-bottom: 1rem; border-bottom: 1px solid #E2E2DF; padding-bottom: 0.5rem;">Coverage Review</h4>
+                            <div class="mockup-line" style="width: 100%;"></div>
+                            <div class="mockup-line" style="width: 80%;"></div>
+                            <div class="mockup-line" style="width: 90%;"></div>
+                            <div style="display: flex; gap: 0.5rem; margin-top: 2rem;">
+                                <div style="width: 16px; height: 16px; border: 2px solid #0066CC; border-radius: 2px;"></div>
+                                <div class="mockup-line" style="width: 60%; margin: 0;"></div>
+                            </div>
+                            <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
+                                <div style="width: 16px; height: 16px; border: 2px solid #0066CC; border-radius: 2px;"></div>
+                                <div class="mockup-line" style="width: 50%; margin: 0;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 03 — RESOURCE LIBRARY -->
+        <section class="section" style="background: var(--bg-secondary);">
+            <div class="container js-reveal">
+                <div class="text-center">
+                    <h2 class="text-h2">Resource Library</h2>
+                </div>
+                
+                <div class="resource-grid">
+                    <div class="resource-card" style="padding: 0; display: flex; flex-direction: column; overflow: hidden;">
+                        <img src="assets/images/Workers-Compensation-Basics.png" alt="Workers' Compensation Basics" style="width: 100%; height: 250px; object-fit: cover; display: block;">
+                        <div class="resource-content" style="padding: 2.5rem; flex: 1;">
+                            <div class="resource-category">Guide</div>
+                            <h3 class="resource-title">Workers’ Compensation Basics</h3>
+                            <p class="text-secondary text-sm">A foundational guide to understanding how workers' compensation functions for businesses.</p>
+                            <a href="#" class="resource-action" data-modal="modal-resource">Read Guide <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+                        </div>
+                    </div>
+                    
+                    <div class="resource-card" style="padding: 0; display: flex; flex-direction: column; overflow: hidden;">
+                        <img src="assets/images/Claims Preparation Checklist.png" alt="Claims Preparation Checklist" style="width: 100%; height: 250px; object-fit: cover; display: block;">
+                        <div class="resource-content" style="padding: 2.5rem; flex: 1;">
+                            <div class="resource-category">Checklist</div>
+                            <h3 class="resource-title">Claims Preparation Checklist</h3>
+                            <p class="text-secondary text-sm">Everything you need to gather immediately following a workplace incident.</p>
+                            <a href="#" class="resource-action" data-modal="modal-resource">View Checklist <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+                        </div>
+                    </div>
+                    
+                    <div class="resource-card" style="padding: 0; display: flex; flex-direction: column; overflow: hidden;">
+                        <img src="assets/images/Workplace Safety Guide.png" alt="Workplace Safety Guide" style="width: 100%; height: 250px; object-fit: cover; display: block;">
+                        <div class="resource-content" style="padding: 2.5rem; flex: 1;">
+                            <div class="resource-category">Manual</div>
+                            <h3 class="resource-title">Workplace Safety Guide</h3>
+                            <p class="text-secondary text-sm">Strategies to implement a robust safety culture and minimize operational hazards.</p>
+                            <a href="#" class="resource-action" data-modal="modal-resource">Read Manual <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+                        </div>
+                    </div>
+                    
+                    <div class="resource-card" style="padding: 0; display: flex; flex-direction: column; overflow: hidden;">
+                        <img src="assets/images/Premium Review Guide.png" alt="Premium Review Guide" style="width: 100%; height: 250px; object-fit: cover; display: block;">
+                        <div class="resource-content" style="padding: 2.5rem; flex: 1;">
+                            <div class="resource-category">Whitepaper</div>
+                            <h3 class="resource-title">Premium Review Guide</h3>
+                            <p class="text-secondary text-sm">Understanding Experience Modification Rates (X-Mod) and how they impact your costs.</p>
+                            <a href="#" class="resource-action" data-modal="modal-resource">Read Whitepaper <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+                        </div>
+                    </div>
+                    
+                    <div class="resource-card" style="padding: 0; display: flex; flex-direction: column; overflow: hidden;">
+                        <img src="assets/images/Compliance Documentation.png" alt="Compliance Documentation" style="width: 100%; height: 250px; object-fit: cover; display: block;">
+                        <div class="resource-content" style="padding: 2.5rem; flex: 1;">
+                            <div class="resource-category">Guide</div>
+                            <h3 class="resource-title">Compliance Documentation</h3>
+                            <p class="text-secondary text-sm">A complete breakdown of required state and federal documentation.</p>
+                            <a href="#" class="resource-action" data-modal="modal-resource">Read Guide <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+                        </div>
+                    </div>
+                    
+                    <div class="resource-card" style="padding: 0; display: flex; flex-direction: column; overflow: hidden;">
+                        <img src="assets/images/Incident Report Template.png" alt="Incident Report Template" style="width: 100%; height: 250px; object-fit: cover; display: block;">
+                        <div class="resource-content" style="padding: 2.5rem; flex: 1;">
+                            <div class="resource-category">Template</div>
+                            <h3 class="resource-title">Incident Report Template</h3>
+                            <p class="text-secondary text-sm">Standardized template for recording workplace incidents accurately.</p>
+                            <a href="#" class="resource-action" data-modal="modal-resource">Download Template <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 04 — NEWSLETTER CTA -->
+        <section class="section section-dark js-reveal">
+            <div class="container text-center">
+                <h2 class="text-h2">Receive practical workplace risk insights.</h2>
+                <p class="text-secondary" style="margin-top: 1rem;">Join our newsletter for updates on compliance, safety, and risk management.</p>
+                
+                <form class="newsletter-form js-validate-form">
+                    <input type="email" class="form-control" placeholder="Work email address" required style="flex-grow: 1;">
+                    <button type="submit" class="btn btn-primary" style="white-space: nowrap;">Subscribe</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 2rem;"><img src="assets/logo/favicon.svg" alt="WorkGuard Icon" width="32" height="32"><span style="font-family: var(--font-heading); font-weight: 800; font-size: 1.5rem; letter-spacing: -0.02em; color: var(--text-primary); text-transform: uppercase;">WorkGuard</span></div>
+                    <p class="text-secondary" style="max-width: 250px;">Premium workers' compensation insurance advisory for modern businesses.</p>
+                    <div class="social-links" style="margin-top: 1.5rem;">
+                        <a href="#" class="social-link" aria-label="Facebook">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Instagram">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                        </a>
+                        <a href="#" class="social-link" aria-label="X">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <div class="footer-links">
+                        <a href="about.html" class="footer-link">About Us</a>
+                        <a href="services.html" class="footer-link">Services</a>
+                        <a href="coverage.html" class="footer-link">Coverage Review</a>
+                        <a href="claims-risk.html" class="footer-link">Claims & Risk</a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Resources</h4>
+                    <div class="footer-links">
+                        <a href="resources.html" class="footer-link">Resource Center</a>
+                        <a href="#" class="footer-link">Compliance Guides</a>
+                        <a href="#" class="footer-link">Safety Programs</a>
+                        <a href="contact.html" class="footer-link">Contact Support</a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Client Portal</h4>
+                    <div class="footer-links">
+                        <a href="dashboard.html" class="footer-link">Access Dashboard</a>
+                        <a href="dashboard.html" class="footer-link">Policy Documents</a>
+                        <a href="dashboard.html" class="footer-link">Track Claims</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 WorkGuard Advisory. All rights reserved.</p>
+                <div class="footer-links" style="flex-direction: row; gap: 2rem;">
+                    <a href="#" class="footer-link">Privacy Policy</a>
+                    <a href="#" class="footer-link">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- MODAL: Resource Request -->
+    <div class="modal-overlay" id="modal-resource">
+        <div class="modal-content text-center">
+            <button class="modal-close" aria-label="Close modal"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>
+            <div style="width: 64px; height: 64px; background: var(--blue-light); color: var(--blue-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem;">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+            </div>
+            <h3 class="text-h3" style="margin-bottom: 0.5rem;">Access Resource</h3>
+            <p class="text-secondary" style="margin-bottom: 2rem;">Please enter your email to access this document.</p>
+            <form class="js-validate-form">
+                <div class="form-group text-left" style="text-align: left;">
+                    <label class="form-label">Email Address</label>
+                    <input type="email" class="form-control" required>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%; padding: 1rem;">Send to Email</button>
+            </form>
+        </div>
+    </div>
+    
+    <!-- MODAL: Checklist -->
+    <div class="modal-overlay" id="modal-checklist">
+        <div class="modal-content">
+            <button class="modal-close" aria-label="Close modal"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>
+            <h3 class="text-h3" style="margin-bottom: 1.5rem;">Coverage Review Checklist</h3>
+            <div style="background: var(--bg-secondary); padding: 1.5rem; border-radius: var(--radius-sm); margin-bottom: 2rem;">
+                <ul style="list-style: none; padding: 0; display: flex; flex-direction: column; gap: 1rem;">
+                    <li><label style="display: flex; gap: 1rem; cursor: pointer;"><input type="checkbox" style="margin-top: 4px;"> <span>Current Policy Documents</span></label></li>
+                    <li><label style="display: flex; gap: 1rem; cursor: pointer;"><input type="checkbox" style="margin-top: 4px;"> <span>Experience Modification Worksheet</span></label></li>
+                    <li><label style="display: flex; gap: 1rem; cursor: pointer;"><input type="checkbox" style="margin-top: 4px;"> <span>3-5 Years Loss Runs</span></label></li>
+                    <li><label style="display: flex; gap: 1rem; cursor: pointer;"><input type="checkbox" style="margin-top: 4px;"> <span>Payroll by Class Code</span></label></li>
+                    <li><label style="display: flex; gap: 1rem; cursor: pointer;"><input type="checkbox" style="margin-top: 4px;"> <span>Safety Manual / IIPP</span></label></li>
+                </ul>
+            </div>
+            <button class="btn btn-primary" style="width: 100%;" onclick="document.querySelector('#modal-checklist .modal-close').click();">Close Checklist</button>
+        </div>
+    </div>
+
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/animations.js"></script>
+</body>
+</html>

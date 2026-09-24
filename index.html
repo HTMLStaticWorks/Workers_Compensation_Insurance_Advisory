@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WorkGuard | Premium workers' compensation Advisory</title>
+    <link rel="icon" type="image/svg+xml" href="assets/logo/favicon.svg">
+    <meta name="description" content="Specialized workers’ compensation insurance advisory designed to help businesses manage coverage, claims, compliance, and workplace risk with greater confidence.">
+    
+    <!-- Fonts: Inter & Manrope -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+    
+    <style>
+        /* Home Specific Styles (Ideally would go into a component file) */
+        
+        /* Reveal Animation Base */
+        .js-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all var(--transition-slow);
+        }
+        .js-reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Section 01: Hero */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: var(--header-height);
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        .hero-content h1 {
+            font-size: clamp(3rem, 5vw, 4.5rem);
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+        .hero-content p {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            margin-bottom: 2.5rem;
+            max-width: 500px;
+        }
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+        .hero-visual {
+            position: relative;
+            height: 600px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        /* CSS 3D Shield Representation */
+        .shield-container {
+            position: relative;
+            width: 300px;
+            height: 350px;
+            perspective: 1000px;
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        .shield-layer {
+            position: absolute;
+            inset: 0;
+            border-radius: 50% 50% 50% 50% / 20% 20% 80% 80%;
+            border: 2px solid var(--glass-border);
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 30px 60px rgba(0, 102, 204, 0.1);
+        }
+        .shield-layer::after {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            border-radius: inherit;
+            background: linear-gradient(135deg, var(--blue-primary) 0%, transparent 50%);
+            z-index: -1;
+            opacity: 0.5;
+        }
+        .shield-icon {
+            color: var(--blue-primary);
+            width: 80px;
+            height: 80px;
+        }
+        .floating-card {
+            position: absolute;
+            background: var(--bg-main);
+            padding: 1rem 1.5rem;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            z-index: 2;
+            animation: float-offset 8s ease-in-out infinite;
+        }
+        .fc-1 { top: 10%; right: -10%; }
+        .fc-2 { bottom: 10%; left: -10%; animation-delay: -3s; }
+        @keyframes float-offset {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(-10px, 15px); }
+        }
+
+        /* Section 02: Risk Strip */
+        .risk-strip {
+            background: var(--bg-tertiary);
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            padding: 4rem 0;
+        }
+        .strip-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            text-align: center;
+        }
+        .strip-item h4 {
+            font-size: 1.125rem;
+            margin-bottom: 0.5rem;
+        }
+        .strip-item p {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+        .progress-circle {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: conic-gradient(var(--blue-primary) 75%, var(--border-color) 0);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto 1.5rem;
+            position: relative;
+        }
+        .progress-circle::after {
+            content: '';
+            position: absolute;
+            width: 70px;
+            height: 70px;
+            background: var(--bg-tertiary);
+            border-radius: 50%;
+        }
+        .progress-circle span {
+            position: relative;
+            z-index: 1;
+            font-weight: 700;
+            font-family: var(--font-heading);
+            color: var(--text-primary);
+        }
+
+        /* Section 03: Workplace */
+        .workplace-section {
+            background: var(--bg-secondary);
+            overflow: hidden;
+        }
+        .workplace-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+        }
+        .workplace-image {
+            height: 100%;
+            min-height: 600px;
+            background-color: var(--bg-tertiary); /* Placeholder for image */
+            background-image: url('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=1400');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        .workplace-content {
+            padding: 6rem;
+        }
+        .timeline {
+            border-left: 2px solid var(--border-color);
+            margin-top: 3rem;
+            padding-left: 2rem;
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2.35rem;
+            top: 0.25rem;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--blue-primary);
+            box-shadow: 0 0 0 4px var(--bg-secondary);
+        }
+
+        /* Section 04: Advisory Framework */
+        .framework-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+        .frame-card {
+            background: var(--bg-tertiary);
+            padding: 3rem;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-color);
+            transition: all var(--transition-base);
+            position: relative;
+            overflow: hidden;
+        }
+        .frame-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--blue-primary);
+        }
+        .frame-num {
+            font-size: 3rem;
+            font-family: var(--font-heading);
+            font-weight: 800;
+            color: var(--blue-light);
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+            line-height: 1;
+        }
+
+        /* Section 05: Claim Journey */
+        .journey-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+        }
+        .journey-nav {
+            display: flex;
+            gap: 1rem;
+        }
+        .journey-nav .icon-btn {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+        }
+        .journey-nav .icon-btn:hover {
+            border-color: var(--blue-primary);
+            color: var(--blue-primary);
+        }
+        .journey-scroll {
+            display: flex;
+            gap: 2rem;
+            overflow-x: auto;
+            padding: 1rem 0 2rem;
+            scrollbar-width: none; /* Firefox */
+            scroll-behavior: smooth;
+            scroll-snap-type: x mandatory;
+        }
+        .journey-scroll::-webkit-scrollbar {
+            display: none; /* Chrome */
+        }
+        .journey-step {
+            flex: 0 0 calc((100% - 4rem) / 3);
+            background: var(--bg-tertiary);
+            padding: 2.5rem;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-color);
+            position: relative;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            scroll-snap-align: start;
+        }
+        .journey-step:hover {
+            background: var(--blue-primary);
+            color: #FFF;
+        }
+        .journey-step:hover p, .journey-step:hover h4 {
+            color: rgba(255,255,255,0.8) !important;
+        }
+
+        /* Responsive specific to index */
+        @media (max-width: 1024px) {
+            .hero-grid { grid-template-columns: 1fr; text-align: center; }
+            .hero-content p { margin-left: auto; margin-right: auto; }
+            .hero-buttons { justify-content: center; }
+            .workplace-grid { grid-template-columns: 1fr; }
+            .workplace-image { min-height: 400px; }
+            .workplace-content { padding: 4rem 5%; }
+            .strip-grid { grid-template-columns: repeat(2, 1fr); }
+            .journey-step { flex: 0 0 calc((100% - 2rem) / 2); }
+        }
+        @media (max-width: 768px) {
+            .framework-grid { grid-template-columns: 1fr; }
+            .strip-grid { grid-template-columns: 1fr; }
+            .journey-step { flex: 0 0 100%; }
+            .journey-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+        }
+    </style>
+</head><body>
+
+    <!-- 6. GLOBAL NAVBAR -->
+    <header class="navbar">
+        <div class="container navbar-container">
+            <a href="index.html" class="logo" aria-label="WorkGuard Home">
+                <div style="display: flex; align-items: center; gap: 0.75rem;"><img src="assets/logo/favicon.svg" alt="WorkGuard Icon" width="32" height="32"><span style="font-family: var(--font-heading); font-weight: 800; font-size: 1.5rem; letter-spacing: -0.02em; color: var(--text-primary); text-transform: uppercase;">WorkGuard</span></div>
+            </a>
+            <nav class="nav-links">
+                <a href="index.html" class="nav-link active">Home 1</a>
+                <a href="home-2.html" class="nav-link">Home 2</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="services.html" class="nav-link">Services</a>
+                <a href="coverage.html" class="nav-link">Coverage</a>
+                <a href="claims-risk.html" class="nav-link">Claims & Risk</a>
+                <a href="resources.html" class="nav-link">Resources</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+                <a href="dashboard.html" class="nav-link">Dashboard</a>
+            </nav>
+            <div class="nav-controls">
+                <button class="icon-btn js-theme-toggle" aria-label="Toggle Theme"></button>
+                <button class="icon-btn js-dir-toggle" aria-label="Toggle RTL" style="display: flex;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 9H7M21 9L17 5M21 9L17 13M3 15h14M3 15l4-4M3 15l4 4"/>
+                    </svg>
+                </button>
+                <a href="login.html" class="btn btn-primary" style="padding: 0.5rem 1.25rem;">Login</a>
+                <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+            </div>
+        </div>
+    </header>
+
+    <!-- 7. MOBILE NAVIGATION DRAWER -->
+    <div class="mobile-menu">
+        <button class="icon-btn js-menu-close" aria-label="Close Menu" style="align-self: flex-end; margin-bottom: 2rem; margin-top: -3rem; margin-right: -1rem;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+        </button>
+        <nav class="mobile-nav-links">
+            <a href="index.html" class="mobile-nav-link text-blue">Home 1</a>
+            <a href="home-2.html" class="mobile-nav-link">Home 2</a>
+            <a href="about.html" class="mobile-nav-link">About</a>
+            <a href="services.html" class="mobile-nav-link">Services</a>
+            <a href="coverage.html" class="mobile-nav-link">Coverage</a>
+            <a href="claims-risk.html" class="mobile-nav-link">Claims & Risk</a>
+            <a href="resources.html" class="mobile-nav-link">Resources</a>
+            <a href="contact.html" class="mobile-nav-link">Contact</a>
+            <a href="dashboard.html" class="mobile-nav-link">Dashboard</a>
+        </nav>
+        <div class="mobile-controls" style="display: flex; justify-content: center; gap: 1rem; margin-top: 2rem; margin-bottom: 2rem;">
+            <button class="icon-btn js-theme-toggle" aria-label="Toggle Theme"></button>
+            <button class="icon-btn js-dir-toggle" aria-label="Toggle RTL">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 9H7M21 9L17 5M21 9L17 13M3 15h14M3 15l4-4M3 15l4 4"/>
+                </svg>
+            </button>
+        </div>
+        <a href="login.html" class="btn btn-primary" style="text-align: center; width: 100%; margin-top: auto;">Login</a>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <main>
+        <!-- PAGE 01 — HOME -->
+        
+        <!-- SECTION 01 — HERO -->
+        <section class="hero js-reveal">
+            <div class="container hero-grid">
+                <div class="hero-content">
+                    <h1>Protect Your Workforce.<br>Strengthen Your Business.</h1>
+                    <p>Specialized workers’ compensation insurance advisory designed to help businesses manage coverage, claims, compliance, and workplace risk with greater confidence.</p>
+                    <div class="hero-buttons">
+                        <a href="#coverage-review" class="btn btn-primary" data-modal="modal-coverage-review">Review My Coverage</a>
+                        <a href="services.html" class="btn btn-secondary">Explore Advisory Services</a>
+                    </div>
+                </div>
+                <div class="hero-visual" style="display: flex; justify-content: center; align-items: center; padding: 0;">
+                    <img src="assets/images/home1-hero.png" alt="Hero Image" style="width: 100%; height: 100%; object-fit: contain; display: block;">
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 02 — RISK INTELLIGENCE STRIP -->
+        <section class="risk-strip js-reveal">
+            <div class="container strip-grid">
+                <div class="strip-item">
+                    <div class="progress-circle" style="background: conic-gradient(var(--blue-primary) 100%, var(--border-color) 0);">
+                        <span>100%</span>
+                    </div>
+                    <h4>Coverage Visibility</h4>
+                    <p>Clear understanding of policy protection.</p>
+                </div>
+                <div class="strip-item">
+                    <div class="progress-circle" style="background: conic-gradient(var(--blue-primary) 85%, var(--border-color) 0);">
+                        <span class="js-counter" data-target="85" data-suffix="%">0%</span>
+                    </div>
+                    <h4>Claims Readiness</h4>
+                    <p>Structured support throughout the claims process.</p>
+                </div>
+                <div class="strip-item">
+                    <div class="progress-circle" style="background: conic-gradient(var(--blue-primary) 92%, var(--border-color) 0);">
+                        <span class="js-counter" data-target="92" data-suffix="%">0%</span>
+                    </div>
+                    <h4>Compliance Confidence</h4>
+                    <p>Documentation and regulatory readiness.</p>
+                </div>
+                <div class="strip-item">
+                    <div class="progress-circle" style="background: conic-gradient(var(--blue-primary) 78%, var(--border-color) 0);">
+                        <span class="js-counter" data-target="78" data-suffix="%">0%</span>
+                    </div>
+                    <h4>Risk Awareness</h4>
+                    <p>Identify workplace exposure before it becomes costly.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 03 — WORKPLACE PROTECTION -->
+        <section class="workplace-section js-reveal">
+            <div class="workplace-grid">
+                <div class="workplace-image"></div>
+                <div class="workplace-content">
+                    <span class="badge" style="margin-bottom: 1rem;">Workplace Protection</span>
+                    <h2 class="text-h2">Insurance should protect more than a policy.</h2>
+                    <p class="text-lead">Our advisory services connect every aspect of your workers' compensation program, ensuring your business is structurally secure and operationally prepared.</p>
+                    
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <h4>Coverage Evaluation</h4>
+                            <p class="text-secondary">Analyzing current policies to eliminate gaps.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <h4>Employee Safety</h4>
+                            <p class="text-secondary">Developing programs that reduce incidence rates.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <h4>Claims Management</h4>
+                            <p class="text-secondary">Accelerating resolution and mitigating costs.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 04 — ADVISORY FRAMEWORK -->
+        <section class="section js-reveal">
+            <div class="container">
+                <div style="text-align: center; max-width: 600px; margin: 0 auto;">
+                    <span class="badge" style="margin-bottom: 1rem;">Methodology</span>
+                    <h2 class="text-h2">A structured approach to risk.</h2>
+                </div>
+                
+                <div class="framework-grid">
+                    <div class="frame-card" style="padding: 0; display: flex; flex-direction: column; overflow: hidden;">
+                        <img src="assets/images/Assess.png" alt="Assess" style="width: 100%; height: 250px; object-fit: cover; display: block;">
+                        <div style="padding: 3rem; position: relative; flex: 1;">
+                            <div class="frame-num" style="top: 1rem; right: 1.5rem; z-index: 1;">01</div>
+                            <h3>Assess</h3>
+                            <p class="text-secondary">Understand business operations, historical claims data, and workforce exposure to identify vulnerabilities.</p>
+                        </div>
+                    </div>
+                    <div class="frame-card" style="padding: 0; display: flex; flex-direction: column; overflow: hidden;">
+                        <img src="assets/images/Structure.png" alt="Structure" style="width: 100%; height: 250px; object-fit: cover; display: block;">
+                        <div style="padding: 3rem; position: relative; flex: 1;">
+                            <div class="frame-num" style="top: 1rem; right: 1.5rem; z-index: 1;">02</div>
+                            <h3>Structure</h3>
+                            <p class="text-secondary">Review existing coverage, identify protection gaps, and align policies with operational reality.</p>
+                        </div>
+                    </div>
+                    <div class="frame-card" style="padding: 0; display: flex; flex-direction: column; overflow: hidden;">
+                        <img src="assets/images/Support.png" alt="Support" style="width: 100%; height: 250px; object-fit: cover; display: block;">
+                        <div style="padding: 3rem; position: relative; flex: 1;">
+                            <div class="frame-num" style="top: 1rem; right: 1.5rem; z-index: 1;">03</div>
+                            <h3>Support</h3>
+                            <p class="text-secondary">Provide ongoing assistance with claims handling, documentation, and policy-related workflows.</p>
+                        </div>
+                    </div>
+                    <div class="frame-card" style="padding: 0; display: flex; flex-direction: column; overflow: hidden;">
+                        <img src="assets/images/Improve.png" alt="Improve" style="width: 100%; height: 250px; object-fit: cover; display: block;">
+                        <div style="padding: 3rem; position: relative; flex: 1;">
+                            <div class="frame-num" style="top: 1rem; right: 1.5rem; z-index: 1;">04</div>
+                            <h3>Improve</h3>
+                            <p class="text-secondary">Develop and implement proactive strategies for stronger risk management and safety compliance.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 05 — CLAIM JOURNEY -->
+        <section class="section" style="background: var(--bg-secondary); overflow: hidden;">
+            <div class="container js-reveal">
+                <div class="journey-header">
+                    <h2 class="text-h2" style="margin: 0;">The Claim Lifecycle</h2>
+                    <div class="journey-nav">
+                        <button class="icon-btn" id="journey-prev" aria-label="Previous">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                        </button>
+                        <button class="icon-btn" id="journey-next" aria-label="Next">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="journey-scroll" id="journey-scroll">
+                    <div class="journey-step" style="padding: 0; display: flex; flex-direction: column; overflow: hidden;">
+                        <img src="assets/images/Report.png" alt="Report" style="width: 100%; height: 250px; object-fit: cover; display: block;">
+                        <div style="padding: 2.5rem; flex: 1;">
+                            <h4 class="text-blue" style="margin-bottom: 0.5rem;">01</h4>
+                            <h3>Report</h3>
+                            <p class="text-secondary" style="margin-top: 1rem;">Immediate notification and initial incident documentation capture.</p>
+                        </div>
+                    </div>
+                    <div class="journey-step" style="padding: 0; display: flex; flex-direction: column; overflow: hidden;">
+                        <img src="assets/images/Review.png" alt="Review" style="width: 100%; height: 250px; object-fit: cover; display: block;">
+                        <div style="padding: 2.5rem; flex: 1;">
+                            <h4 class="text-blue" style="margin-bottom: 0.5rem;">02</h4>
+                            <h3>Review</h3>
+                            <p class="text-secondary" style="margin-top: 1rem;">Analysis of claim validity, coverage applicability, and initial triage.</p>
+                        </div>
+                    </div>
+                    <div class="journey-step" style="padding: 0; display: flex; flex-direction: column; overflow: hidden;">
+                        <img src="assets/images/Documentation.png" alt="Documentation" style="width: 100%; height: 250px; object-fit: cover; display: block;">
+                        <div style="padding: 2.5rem; flex: 1;">
+                            <h4 class="text-blue" style="margin-bottom: 0.5rem;">03</h4>
+                            <h3>Documentation</h3>
+                            <p class="text-secondary" style="margin-top: 1rem;">Gathering medical reports, witness statements, and compliance forms.</p>
+                        </div>
+                    </div>
+                    <div class="journey-step" style="padding: 0; display: flex; flex-direction: column; overflow: hidden;">
+                        <img src="assets/images/Resolution.png" alt="Resolution" style="width: 100%; height: 250px; object-fit: cover; display: block;">
+                        <div style="padding: 2.5rem; flex: 1;">
+                            <h4 class="text-blue" style="margin-bottom: 0.5rem;">04</h4>
+                            <h3>Resolution</h3>
+                            <p class="text-secondary" style="margin-top: 1rem;">Strategic management toward claim closure and settlement.</p>
+                        </div>
+                    </div>
+                    <div class="journey-step" style="padding: 0; display: flex; flex-direction: column; overflow: hidden;">
+                        <img src="assets/images/Follow-up.png" alt="Follow-up" style="width: 100%; height: 250px; object-fit: cover; display: block;">
+                        <div style="padding: 2.5rem; flex: 1;">
+                            <h4 class="text-blue" style="margin-bottom: 0.5rem;">05</h4>
+                            <h3>Follow-up</h3>
+                            <p class="text-secondary" style="margin-top: 1rem;">Post-claim analysis and return-to-work program implementation.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 06 — CTA -->
+        <section class="section section-dark js-reveal">
+            <div class="container" style="text-align: center; max-width: 1200px;">
+                <h2 class="text-h1" style="margin-bottom: 1.5rem;">Know where your business stands.</h2>
+                <p class="text-lead" style="margin-bottom: 3rem; max-width: 800px; margin-left: auto; margin-right: auto;">Start with a focused review of your current workers’ compensation coverage and risk environment.</p>
+                <button class="btn btn-primary" data-modal="modal-coverage-review" style="font-size: 1.125rem; padding: 1.25rem 3rem;">Start Coverage Review</button>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 2rem;"><img src="assets/logo/favicon.svg" alt="WorkGuard Icon" width="32" height="32"><span style="font-family: var(--font-heading); font-weight: 800; font-size: 1.5rem; letter-spacing: -0.02em; color: var(--text-primary); text-transform: uppercase;">WorkGuard</span></div>
+                    <p class="text-secondary" style="max-width: 250px;">Premium workers' compensation insurance advisory for modern businesses.</p>
+                    <div class="social-links" style="margin-top: 1.5rem;">
+                        <a href="#" class="social-link" aria-label="Facebook">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Instagram">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                        </a>
+                        <a href="#" class="social-link" aria-label="X">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <div class="footer-links">
+                        <a href="about.html" class="footer-link">About Us</a>
+                        <a href="services.html" class="footer-link">Services</a>
+                        <a href="coverage.html" class="footer-link">Coverage Review</a>
+                        <a href="claims-risk.html" class="footer-link">Claims & Risk</a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Resources</h4>
+                    <div class="footer-links">
+                        <a href="resources.html" class="footer-link">Resource Center</a>
+                        <a href="#" class="footer-link">Compliance Guides</a>
+                        <a href="#" class="footer-link">Safety Programs</a>
+                        <a href="contact.html" class="footer-link">Contact Support</a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Client Portal</h4>
+                    <div class="footer-links">
+                        <a href="dashboard.html" class="footer-link">Access Dashboard</a>
+                        <a href="dashboard.html" class="footer-link">Policy Documents</a>
+                        <a href="dashboard.html" class="footer-link">Track Claims</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 WorkGuard Advisory. All rights reserved.</p>
+                <div class="footer-links" style="flex-direction: row; gap: 2rem;">
+                    <a href="#" class="footer-link">Privacy Policy</a>
+                    <a href="#" class="footer-link">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- MODAL: Coverage Review -->
+    <div class="modal-overlay" id="modal-coverage-review">
+        <div class="modal-content">
+            <button class="modal-close" aria-label="Close modal">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+            <h3 class="text-h3" style="margin-bottom: 0.5rem;">Coverage Review Request</h3>
+            <p class="text-secondary" style="margin-bottom: 2rem;">Please provide details about your business to help us understand your current coverage environment.</p>
+            
+            <form class="js-validate-form">
+                <div class="grid grid-4-to-2 gap-4">
+                    <div class="form-group">
+                        <label class="form-label">Business Name</label>
+                        <input type="text" class="form-control" required>
+                        <span class="form-error"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Contact Name</label>
+                        <input type="text" class="form-control" required>
+                        <span class="form-error"></span>
+                    </div>
+                </div>
+                <div class="grid grid-4-to-2 gap-4">
+                    <div class="form-group">
+                        <label class="form-label">Work Email</label>
+                        <input type="email" class="form-control" required>
+                        <span class="form-error"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Number of Employees</label>
+                        <select class="form-control" required>
+                            <option value="">Select Range</option>
+                            <option value="1-50">1 - 50</option>
+                            <option value="51-200">51 - 200</option>
+                            <option value="201-500">201 - 500</option>
+                            <option value="500+">500+</option>
+                        </select>
+                        <span class="form-error"></span>
+                    </div>
+                </div>
+                <div class="grid grid-4-to-2 gap-4">
+                    <div class="form-group">
+                        <label class="form-label">Industry</label>
+                        <input type="text" class="form-control" required>
+                        <span class="form-error"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Current Coverage Status</label>
+                        <select class="form-control" required>
+                            <option value="">Select Status</option>
+                            <option value="active">Currently Insured</option>
+                            <option value="renewing">Renewing Soon</option>
+                            <option value="uninsured">No Current Coverage</option>
+                        </select>
+                        <span class="form-error"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Message (Optional)</label>
+                    <textarea class="form-control" placeholder="Tell us about specific concerns or requirements..."></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%; padding: 1rem;">Submit Review Request</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/animations.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const journeyScroll = document.getElementById('journey-scroll');
+            const btnPrev = document.getElementById('journey-prev');
+            const btnNext = document.getElementById('journey-next');
+
+            if (journeyScroll && btnPrev && btnNext) {
+                btnPrev.addEventListener('click', () => {
+                    // Assuming gap is 2rem (32px)
+                    const cardWidth = journeyScroll.querySelector('.journey-step').offsetWidth + 32;
+                    journeyScroll.scrollBy({ left: -cardWidth, behavior: 'smooth' });
+                });
+                btnNext.addEventListener('click', () => {
+                    const cardWidth = journeyScroll.querySelector('.journey-step').offsetWidth + 32;
+                    journeyScroll.scrollBy({ left: cardWidth, behavior: 'smooth' });
+                });
+            }
+        });
+    </script>
+</body>
+</html>

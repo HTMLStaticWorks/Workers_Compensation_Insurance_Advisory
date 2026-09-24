@@ -1,0 +1,153 @@
+/* ==========================================================================
+   WORKGUARD - Responsive Stylesheet
+   ========================================================================== */
+
+/* Max Width 1200px */
+@media (max-width: 1200px) {
+    .footer-grid {
+        gap: 2rem;
+    }
+}
+
+/* Max Width 1024px (Tablet Landscape & Smaller Desktop) */
+@media (max-width: 1024px) {
+    .nav-links {
+        display: none; /* Hide main nav, handled by hamburger */
+    }
+    
+    .nav-controls .js-theme-toggle,
+    .nav-controls .js-dir-toggle,
+    .nav-controls .btn {
+        display: none !important;
+    }
+    
+    .hamburger {
+        display: flex;
+    }
+    
+    .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+    }
+    
+    .section {
+        padding: 6rem 0;
+    }
+}
+
+/* Max Width 768px (Tablet Portrait & Mobile) */
+@media (max-width: 768px) {
+    :root {
+        --header-height: 70px;
+    }
+    
+    .container {
+        padding: 0 6%;
+    }
+    
+    .section {
+        padding: 4rem 0;
+    }
+    
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+    }
+    
+    .footer-bottom {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+    
+    /* Global center alignment on mobile */
+    .section, .page-header, .hero {
+        text-align: center !important;
+        align-items: center !important;
+    }
+    
+    .footer-col {
+        display: flex;
+        flex-direction: column;
+        text-align: center !important;
+        align-items: center !important;
+    }
+    
+    .social-links {
+        justify-content: center !important;
+    }
+    
+    /* Stack hero buttons vertically and same size */
+    .hero-buttons {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        gap: 1rem;
+        align-items: center;
+    }
+    
+    .hero-buttons .btn {
+        width: 100%;
+        max-width: 300px;
+        white-space: nowrap;
+    }
+    
+    /* Ensure no horizontal overflow */
+    body {
+        overflow-x: hidden;
+    }
+    
+    .modal-content {
+        padding: 2rem 1.5rem;
+        width: 95%;
+    }
+    
+    /* Card grid layouts: Enforce 2 columns for even cards */
+    .grid, .services-grid, .framework-grid, .coverage-grid, .benefits-grid, .resources-grid, .strip-grid, .grid-4-to-2, .grid-3-to-2-1 {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+    
+    /* 3 item layout adjustments: 2 items on top, 1 centered below with EXACT same size */
+    .grid > *:nth-child(3):last-child,
+    .services-grid > *:nth-child(3):last-child,
+    .framework-grid > *:nth-child(3):last-child,
+    .coverage-grid > *:nth-child(3):last-child,
+    .benefits-grid > *:nth-child(3):last-child,
+    .resources-grid > *:nth-child(3):last-child,
+    .strip-grid > *:nth-child(3):last-child,
+    .grid-3-to-2-1 > *:last-child {
+        grid-column: 1 / -1;
+        width: calc(50% - 1rem) !important;
+        justify-self: center;
+    }
+}
+
+/* Max Width 576px (Small Mobile) */
+@media (max-width: 576px) {
+    .grid-4-to-2, .grid-3-to-2-1 {
+        grid-template-columns: 1fr !important;
+    }
+    .grid-3-to-2-1 > *:last-child {
+        width: 100%;
+    }
+    
+    .btn {
+        width: 100%;
+    }
+    
+    .nav-controls .btn {
+        display: none; /* Hide 'Client Portal' in top nav on mobile, moved to menu */
+    }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}

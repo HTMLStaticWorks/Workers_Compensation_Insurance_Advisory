@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Risk Command Center | WorkGuard Advisory</title>
+    <link rel="icon" type="image/svg+xml" href="assets/logo/favicon.svg">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+
+    <style>
+        body {
+            background: var(--bg-secondary);
+        }
+
+        /* Command Center Hero */
+        .command-hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: var(--header-height);
+            position: relative;
+            overflow: hidden;
+            background: url('assets/images/home2-hero.png') center/cover no-repeat;
+        }
+
+        .command-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 4rem;
+            position: relative;
+            z-index: 10;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 2.5rem;
+            border-radius: var(--radius-lg);
+        }
+        .command-content .text-h1,
+        .command-content .text-lead {
+            color: #ffffff !important;
+        }
+
+        /* 3D Risk Visualization */
+        .viz-3d-container {
+            position: relative;
+            height: 500px;
+            width: 100%;
+            perspective: 1200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .viz-card {
+            position: absolute;
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-md);
+            padding: 1.5rem;
+            box-shadow: var(--shadow-lg);
+            transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+            transform-style: preserve-3d;
+            cursor: pointer;
+        }
+
+        .viz-card:hover {
+            border-color: var(--blue-primary);
+            z-index: 100 !important;
+        }
+
+        .viz-card h4 {
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .viz-card .metric {
+            font-size: 2rem;
+            font-weight: 700;
+            font-family: var(--font-heading);
+            color: var(--blue-primary);
+            line-height: 1;
+        }
+
+        /* Business Risk Map */
+        .risk-map-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 4rem;
+        }
+
+        .risk-map-item {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            cursor: pointer;
+            transition: all var(--transition-base);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .risk-map-item:hover {
+            border-color: var(--blue-primary);
+            background: var(--bg-main);
+        }
+
+        .risk-map-item .expanded-content {
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            transition: all var(--transition-base);
+        }
+
+        .risk-map-item:hover .expanded-content {
+            max-height: 100px;
+            opacity: 1;
+            margin-top: 1rem;
+        }
+
+        /* Coverage Gap Analysis */
+        .gap-split {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: stretch;
+            background: var(--bg-tertiary);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-color);
+            margin-top: 4rem;
+            overflow: hidden;
+        }
+
+        .gap-col {
+            padding: 4rem 3rem;
+        }
+
+        .gap-col.left {
+            background: var(--bg-main);
+        }
+
+        .gap-col.right {
+            background: var(--bg-secondary);
+        }
+
+        .gap-divider {
+            width: 2px;
+            background: var(--border-color);
+            position: relative;
+        }
+
+        .gap-indicator {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 48px;
+            height: 48px;
+            background: var(--blue-primary);
+            color: #FFF;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 0 8px var(--bg-tertiary);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(0, 102, 204, 0.4);
+            }
+
+            70% {
+                box-shadow: 0 0 0 15px rgba(0, 102, 204, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(0, 102, 204, 0);
+            }
+        }
+
+        /* Compliance Radar */
+        .radar-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 4rem;
+        }
+
+        .radar-visual {
+            width: 600px;
+            height: 600px;
+            position: relative;
+            border-radius: 50%;
+            border: 1px dashed var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .radar-visual::before {
+            content: '';
+            position: absolute;
+            width: 60%;
+            height: 60%;
+            border-radius: 50%;
+            border: 1px solid var(--border-color);
+        }
+
+        .radar-visual::after {
+            content: '';
+            position: absolute;
+            width: 20%;
+            height: 20%;
+            border-radius: 50%;
+            background: var(--blue-primary);
+            opacity: 0.1;
+        }
+
+        .radar-item {
+            position: absolute;
+            background: var(--bg-tertiary);
+            padding: 0.5rem 1rem;
+            border-radius: var(--radius-full);
+            border: 1px solid var(--border-color);
+            font-size: 0.875rem;
+            font-weight: 600;
+            box-shadow: var(--shadow-sm);
+            z-index: 10;
+        }
+
+        .ri-1 {
+            top: 5%;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .ri-2 {
+            top: 35%;
+            right: 0%;
+        }
+
+        .ri-3 {
+            bottom: 15%;
+            right: 5%;
+        }
+
+        .ri-4 {
+            bottom: 15%;
+            left: 5%;
+        }
+
+        .ri-5 {
+            top: 35%;
+            left: 0%;
+        }
+
+        .radar-sweep {
+            position: absolute;
+            width: 50%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--blue-primary));
+            top: 50%;
+            left: 50%;
+            transform-origin: 0 0;
+            animation: sweep 4s linear infinite;
+        }
+
+        @keyframes sweep {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .risk-map-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+            }
+
+            .gap-split {
+                grid-template-columns: 1fr;
+            }
+
+            .gap-divider {
+                height: 2px;
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .risk-map-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+            }
+
+            .radar-visual {
+                width: 250px;
+                height: 250px;
+                margin: 0 auto;
+            }
+
+            .radar-item {
+                font-size: 0.7rem;
+                padding: 0.25rem 0.5rem;
+                white-space: normal;
+                text-align: center;
+                max-width: 110px;
+                line-height: 1.2;
+            }
+
+            .ri-1 {
+                max-width: 140px;
+                top: -5%;
+            }
+
+            .ri-2 {
+                right: -20%;
+            }
+
+            .ri-5 {
+                left: -20%;
+            }
+
+            .ri-3 {
+                right: -10%;
+                bottom: 0%;
+            }
+
+            .ri-4 {
+                left: -10%;
+                bottom: 0%;
+            }
+
+            .viz-card {
+                transform: none !important;
+                position: static;
+                width: 100%;
+                margin-bottom: 1rem;
+            }
+
+            .viz-3d-container {
+                height: auto;
+                flex-direction: column;
+                padding: 2rem 5%;
+                perspective: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <header class="navbar">
+        <div class="container navbar-container">
+            <a href="index.html" class="logo" aria-label="WorkGuard Home">
+                <div style="display: flex; align-items: center; gap: 0.75rem;"><img src="assets/logo/favicon.svg"
+                        alt="WorkGuard Icon" width="32" height="32"><span
+                        style="font-family: var(--font-heading); font-weight: 800; font-size: 1.5rem; letter-spacing: -0.02em; color: var(--text-primary); text-transform: uppercase;">WorkGuard</span>
+                </div>
+            </a>
+            <nav class="nav-links">
+                <a href="index.html" class="nav-link">Home 1</a>
+                <a href="home-2.html" class="nav-link active">Home 2</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="services.html" class="nav-link">Services</a>
+                <a href="coverage.html" class="nav-link">Coverage</a>
+                <a href="claims-risk.html" class="nav-link">Claims & Risk</a>
+                <a href="resources.html" class="nav-link">Resources</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+                <a href="dashboard.html" class="nav-link">Dashboard</a>
+            </nav>
+            <div class="nav-controls">
+                <button class="icon-btn js-theme-toggle" aria-label="Toggle Theme"></button>
+                <button class="icon-btn js-dir-toggle" aria-label="Toggle RTL" style="display: flex;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 9H7M21 9L17 5M21 9L17 13M3 15h14M3 15l4-4M3 15l4 4" />
+                    </svg>
+                </button>
+                <a href="login.html" class="btn btn-primary" style="padding: 0.5rem 1.25rem;">Login</a>
+                <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+            </div>
+        </div>
+    </header>
+
+    <div class="mobile-menu">
+        <button class="icon-btn js-menu-close" aria-label="Close Menu"
+            style="align-self: flex-end; margin-bottom: 2rem; margin-top: -3rem; margin-right: -1rem;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+        </button>
+        <nav class="mobile-nav-links">
+            <a href="index.html" class="mobile-nav-link">Home 1</a>
+            <a href="home-2.html" class="mobile-nav-link text-blue">Home 2</a>
+            <a href="about.html" class="mobile-nav-link">About</a>
+            <a href="services.html" class="mobile-nav-link">Services</a>
+            <a href="coverage.html" class="mobile-nav-link">Coverage</a>
+            <a href="claims-risk.html" class="mobile-nav-link">Claims & Risk</a>
+            <a href="resources.html" class="mobile-nav-link">Resources</a>
+            <a href="contact.html" class="mobile-nav-link">Contact</a>
+            <a href="dashboard.html" class="mobile-nav-link">Dashboard</a>
+        </nav>
+        <div class="mobile-controls"
+            style="display: flex; justify-content: center; gap: 1rem; margin-top: 2rem; margin-bottom: 2rem;">
+            <button class="icon-btn js-theme-toggle" aria-label="Toggle Theme"></button>
+            <button class="icon-btn js-dir-toggle" aria-label="Toggle RTL">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 9H7M21 9L17 5M21 9L17 13M3 15h14M3 15l4-4M3 15l4 4" />
+                </svg>
+            </button>
+        </div>
+        <a href="login.html" class="btn btn-primary"
+            style="text-align: center; width: 100%; margin-top: auto;">Login</a>
+    </div>
+
+    <main>
+        <!-- SECTION 01 — RISK COMMAND CENTER HERO -->
+        <section class="command-hero js-reveal">
+            <div class="container" style="width: 100%;">
+                <div class="command-content">
+                    <h1 class="text-h1">See Risk Clearly. Act Before It Escalates.</h1>
+                    <p class="text-lead" style="margin-top: 1.5rem;">The next generation of workers' compensation
+                        advisory integrates deep industry knowledge with real-time risk intelligence.</p>
+                </div>
+
+            </div>
+        </section>
+
+
+
+        <!-- SECTION 02 — BUSINESS RISK MAP -->
+        <section class="section js-reveal">
+            <div class="container">
+                <div class="text-center">
+                    <span class="badge">Risk Mapping</span>
+                    <h2 class="text-h2">Identify vulnerabilities across your operations.</h2>
+                </div>
+
+                <div class="risk-map-grid">
+                    <div class="risk-map-item" style="padding: 0; display: flex; flex-direction: column;">
+                        <img src="assets/images/Employee Safety.png" alt="Employee Safety" style="width: 100%; height: 250px; object-fit: cover; display: block;">
+                        <div style="padding: 2rem; flex: 1;">
+                            <h3 class="text-h3" style="font-size: 1.25rem;">Employee Safety</h3>
+                            <div class="expanded-content text-secondary text-sm">Reviewing ergonomic setups, hazard
+                                communications, and physical safety barriers on the floor.</div>
+                        </div>
+                    </div>
+                    <div class="risk-map-item" style="padding: 0; display: flex; flex-direction: column;">
+                        <img src="assets/images/Claims History.png" alt="Claims History" style="width: 100%; height: 250px; object-fit: cover; display: block;">
+                        <div style="padding: 2rem; flex: 1;">
+                            <h3 class="text-h3" style="font-size: 1.25rem;">Claims History</h3>
+                            <div class="expanded-content text-secondary text-sm">Analyzing past claims to find patterns,
+                                identify high-risk departments, and implement targeted training.</div>
+                        </div>
+                    </div>
+                    <div class="risk-map-item" style="padding: 0; display: flex; flex-direction: column;">
+                        <img src="assets/images/Coverage Adequacy.png" alt="Coverage Adequacy" style="width: 100%; height: 250px; object-fit: cover; display: block;">
+                        <div style="padding: 2rem; flex: 1;">
+                            <h3 class="text-h3" style="font-size: 1.25rem;">Coverage Adequacy</h3>
+                            <div class="expanded-content text-secondary text-sm">Ensuring policy limits match actual
+                                exposure, preventing under-insurance in catastrophic events.</div>
+                        </div>
+                    </div>
+                    <div class="risk-map-item" style="padding: 0; display: flex; flex-direction: column;">
+                        <img src="assets/images/Compliance Status.png" alt="Compliance Status" style="width: 100%; height: 250px; object-fit: cover; display: block;">
+                        <div style="padding: 2rem; flex: 1;">
+                            <h3 class="text-h3" style="font-size: 1.25rem;">Compliance Status</h3>
+                            <div class="expanded-content text-secondary text-sm">Auditing required state postings, OSHA
+                                logs, and mandatory employee safety training records.</div>
+                        </div>
+                    </div>
+                    <div class="risk-map-item" style="padding: 0; display: flex; flex-direction: column;">
+                        <img src="assets/images/Premium Accuracy.png" alt="Premium Accuracy" style="width: 100%; height: 250px; object-fit: cover; display: block;">
+                        <div style="padding: 2rem; flex: 1;">
+                            <h3 class="text-h3" style="font-size: 1.25rem;">Premium Accuracy</h3>
+                            <div class="expanded-content text-secondary text-sm">Validating class codes and experience
+                                modifier calculations to ensure you aren't overpaying.</div>
+                        </div>
+                    </div>
+                    <div class="risk-map-item" style="padding: 0; display: flex; flex-direction: column;">
+                        <img src="assets/images/Documentation.png" alt="Documentation" style="width: 100%; height: 250px; object-fit: cover; display: block;">
+                        <div style="padding: 2rem; flex: 1;">
+                            <h3 class="text-h3" style="font-size: 1.25rem;">Documentation</h3>
+                            <div class="expanded-content text-secondary text-sm">Reviewing internal incident reporting
+                                structures and return-to-work program documentation.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 03 — COVERAGE GAP ANALYSIS -->
+        <section class="section js-reveal">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="text-h2">Bridging the Gap</h2>
+                </div>
+
+                <div class="gap-split">
+                    <div class="gap-col left">
+                        <h3 class="text-h3 text-blue">Current Protection</h3>
+                        <ul class="text-secondary"
+                            style="margin-top: 1.5rem; display: flex; flex-direction: column; gap: 1rem; list-style: none;">
+                            <li>• Basic Statutory Limits</li>
+                            <li>• Standard Class Codes</li>
+                            <li>• Default Experience Modifier</li>
+                            <li>• Reactive Claims Handling</li>
+                        </ul>
+                    </div>
+
+                    <div class="gap-divider">
+                        <div class="gap-indicator">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <line x1="12" y1="5" x2="12" y2="19"></line>
+                                <polyline points="19 12 12 19 5 12"></polyline>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <div class="gap-col right">
+                        <h3 class="text-h3">Potential Exposure</h3>
+                        <ul class="text-secondary"
+                            style="margin-top: 1.5rem; display: flex; flex-direction: column; gap: 1rem; list-style: none;">
+                            <li>• Uninsured Contractor Liability</li>
+                            <li>• Misclassification Overpayments</li>
+                            <li>• Escalating Claim Costs</li>
+                            <li>• Compliance Penalties</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="text-center" style="margin-top: 3rem;">
+                    <button class="btn btn-primary" data-modal="modal-gap-analysis">Identify Coverage Gaps</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 04 — CLAIMS SUPPORT -->
+        <section class="section js-reveal" style="padding: 0;">
+            <div class="container">
+                <div class="grid"
+                    style="grid-template-columns: 1fr 1fr; align-items: center; background: var(--bg-main); border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--border-color);">
+                    <div
+                        style="position: relative; height: 100%; min-height: 500px; background: url('https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&q=80&w=1400') center/cover;">
+                        <!-- Floating Claim Status UI -->
+                        <div
+                            style="position: absolute; bottom: 2rem; right: -2rem; background: var(--glass-bg); backdrop-filter: blur(10px); padding: 1.5rem; border-radius: var(--radius-md); box-shadow: var(--shadow-lg); width: 300px; border: 1px solid var(--glass-border);">
+                            <div class="text-xs text-blue" style="margin-bottom: 0.5rem;">Active Claim #WC-9942</div>
+                            <h4 style="font-size: 1rem; margin-bottom: 1rem;">Status: Documentation Needed</h4>
+                            <div style="width: 100%; height: 4px; background: var(--border-color); border-radius: 2px;">
+                                <div
+                                    style="width: 60%; height: 100%; background: var(--blue-primary); border-radius: 2px;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="padding: 4rem;">
+                        <h2 class="text-h2">Guidance when every claim matters.</h2>
+                        <ul
+                            style="margin-top: 2rem; display: flex; flex-direction: column; gap: 1.5rem; list-style: none;">
+                            <li>
+                                <strong>Documentation assistance</strong>
+                                <p class="text-secondary text-sm" style="margin-top: 0.25rem;">Ensuring precise filing
+                                    to avoid delays.</p>
+                            </li>
+                            <li>
+                                <strong>Claim tracking</strong>
+                                <p class="text-secondary text-sm" style="margin-top: 0.25rem;">Visibility into adjuster
+                                    actions and reserves.</p>
+                            </li>
+                            <li>
+                                <strong>Communication support</strong>
+                                <p class="text-secondary text-sm" style="margin-top: 0.25rem;">Acting as a liaison
+                                    between your business and the carrier.</p>
+                            </li>
+                            <li>
+                                <strong>Resolution follow-up</strong>
+                                <p class="text-secondary text-sm" style="margin-top: 0.25rem;">Structuring effective
+                                    return-to-work programs.</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <style>
+                @media(max-width: 992px) {
+                    .section.js-reveal .grid {
+                        grid-template-columns: 1fr !important;
+                    }
+
+                    .section.js-reveal .grid>div:first-child {
+                        min-height: 400px;
+                    }
+                }
+            </style>
+        </section>
+
+        <!-- SECTION 05 — COMPLIANCE RADAR -->
+        <section class="section js-reveal">
+            <div class="container radar-container">
+                <div class="text-center" style="margin-bottom: 3rem;">
+                    <h2 class="text-h2">360° Compliance Tracking</h2>
+                </div>
+
+                <div class="radar-visual">
+                    <div class="radar-sweep"></div>
+                    <div class="radar-item ri-1">Policy Documents</div>
+                    <div class="radar-item ri-2">Certificates of Insurance</div>
+                    <div class="radar-item ri-3">Employee Records</div>
+                    <div class="radar-item ri-4">Renewal Dates</div>
+                    <div class="radar-item ri-5">Required Postings</div>
+
+                    <div
+                        style="width: 10px; height: 10px; background: var(--blue-primary); border-radius: 50%; box-shadow: 0 0 10px var(--blue-primary);">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 06 — CTA -->
+        <section class="section section-dark js-reveal">
+            <div class="container text-center" style="max-width: 1200px;">
+                <h2 class="text-h1" style="margin-bottom: 2rem;">Turn uncertainty into a clearer risk strategy.</h2>
+                <button class="btn btn-primary" data-modal="modal-advisory-review"
+                    style="font-size: 1.125rem; padding: 1.25rem 3rem;">Request Advisory Review</button>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 2rem;"><img src="assets/logo/favicon.svg" alt="WorkGuard Icon" width="32" height="32"><span style="font-family: var(--font-heading); font-weight: 800; font-size: 1.5rem; letter-spacing: -0.02em; color: var(--text-primary); text-transform: uppercase;">WorkGuard</span></div>
+                    <p class="text-secondary" style="max-width: 250px;">Premium workers' compensation insurance advisory for modern businesses.</p>
+                    <div class="social-links" style="margin-top: 1.5rem;">
+                        <a href="#" class="social-link" aria-label="Facebook">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Instagram">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                        </a>
+                        <a href="#" class="social-link" aria-label="X">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <div class="footer-links">
+                        <a href="about.html" class="footer-link">About Us</a>
+                        <a href="services.html" class="footer-link">Services</a>
+                        <a href="coverage.html" class="footer-link">Coverage Review</a>
+                        <a href="claims-risk.html" class="footer-link">Claims & Risk</a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Resources</h4>
+                    <div class="footer-links">
+                        <a href="resources.html" class="footer-link">Resource Center</a>
+                        <a href="#" class="footer-link">Compliance Guides</a>
+                        <a href="#" class="footer-link">Safety Programs</a>
+                        <a href="contact.html" class="footer-link">Contact Support</a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Client Portal</h4>
+                    <div class="footer-links">
+                        <a href="dashboard.html" class="footer-link">Access Dashboard</a>
+                        <a href="dashboard.html" class="footer-link">Policy Documents</a>
+                        <a href="dashboard.html" class="footer-link">Track Claims</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 WorkGuard Advisory. All rights reserved.</p>
+                <div class="footer-links" style="flex-direction: row; gap: 2rem;">
+                    <a href="#" class="footer-link">Privacy Policy</a>
+                    <a href="#" class="footer-link">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- MODAL: Gap Analysis / Advisory Review -->
+    <div class="modal-overlay" id="modal-gap-analysis">
+        <div class="modal-content">
+            <button class="modal-close" aria-label="Close modal"><svg width="24" height="24" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg></button>
+            <h3 class="text-h3" style="margin-bottom: 0.5rem;">Coverage Gap Assessment</h3>
+            <p class="text-secondary" style="margin-bottom: 2rem;">Let us identify where your current policy leaves your
+                business exposed.</p>
+            <form class="js-validate-form">
+                <div class="form-group">
+                    <label class="form-label">Business Name</label>
+                    <input type="text" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Current Insurance Carrier (if known)</label>
+                    <input type="text" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Email</label>
+                    <input type="email" class="form-control" required>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%; padding: 1rem;">Start
+                    Assessment</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="modal-advisory-review">
+        <div class="modal-content">
+            <button class="modal-close" aria-label="Close modal"><svg width="24" height="24" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg></button>
+            <h3 class="text-h3" style="margin-bottom: 0.5rem;">Advisory Review Request</h3>
+            <p class="text-secondary" style="margin-bottom: 2rem;">Connect with our team to discuss your risk strategy.
+            </p>
+            <form class="js-validate-form">
+                <div class="form-group">
+                    <label class="form-label">Business Name</label>
+                    <input type="text" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Email</label>
+                    <input type="email" class="form-control" required>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%; padding: 1rem;">Submit
+                    Request</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/animations.js"></script>
+</body>
+
+</html>

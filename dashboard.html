@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client Portal | WorkGuard</title>
+    <link rel="icon" type="image/svg+xml" href="assets/logo/favicon.svg">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="assets/css/style.css">
+    
+    <style>
+        body { background: var(--bg-secondary); }
+        
+        .dashboard-layout {
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Sidebar */
+        .dash-sidebar {
+            width: 280px;
+            background: var(--bg-tertiary);
+            border-right: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            transition: all var(--transition-base);
+            z-index: 100;
+        }
+        [dir="rtl"] .dash-sidebar { border-right: none; border-left: 1px solid var(--border-color); }
+        
+        .dash-logo-area {
+            padding: 2rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .dash-nav {
+            padding: 2rem 1rem;
+            flex-grow: 1;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        
+        .dash-nav-link {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.875rem 1rem;
+            border-radius: var(--radius-sm);
+            color: var(--text-secondary);
+            font-weight: 500;
+            transition: all var(--transition-fast);
+        }
+        .dash-nav-link svg { width: 20px; height: 20px; }
+        .dash-nav-link:hover {
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+        }
+        .dash-nav-link.active {
+            background: var(--blue-light);
+            color: var(--blue-primary);
+        }
+
+        .dash-footer {
+            padding: 2rem;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        /* Main Content */
+        .dash-main {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        /* Header */
+        .dash-header {
+            height: 80px;
+            background: var(--bg-tertiary);
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 3rem;
+            flex-shrink: 0;
+        }
+        
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--blue-primary);
+            color: #FFF;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+        }
+
+        .dash-hamburger {
+            display: none;
+            background: transparent;
+            border: none;
+            color: var(--text-primary);
+            cursor: pointer;
+        }
+
+        /* Content Area */
+        .dash-content-area {
+            flex-grow: 1;
+            overflow-y: auto;
+            padding: 3rem;
+        }
+        
+        .dash-pane {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+        .dash-pane.active {
+            display: block;
+        }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        /* Overview Widgets */
+        .widget-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+        .widget-card {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 1.5rem;
+            box-shadow: var(--shadow-sm);
+        }
+        .widget-title {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        .widget-value {
+            font-size: 2rem;
+            font-family: var(--font-heading);
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        /* Cards & Tables */
+        .dash-card {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow-sm);
+        }
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .dash-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .dash-table th, .dash-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+        [dir="rtl"] .dash-table th, [dir="rtl"] .dash-table td { text-align: right; }
+        .dash-table th { color: var(--text-secondary); font-weight: 600; font-size: 0.875rem; }
+        
+        .status-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: var(--radius-full);
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        .status-active { background: rgba(34, 197, 94, 0.1); color: #22C55E; }
+        .status-review { background: var(--blue-light); color: var(--blue-primary); }
+
+        /* Claim Timeline */
+        .claim-timeline {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            margin: 3rem 0 2rem;
+        }
+        .claim-timeline::before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--border-color);
+            z-index: 1;
+        }
+        .timeline-node {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            position: relative;
+            z-index: 2;
+            width: 100px;
+            text-align: center;
+        }
+        .node-dot {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--bg-tertiary);
+            border: 2px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .timeline-node.completed .node-dot {
+            background: var(--blue-primary);
+            border-color: var(--blue-primary);
+            color: #FFF;
+        }
+        .timeline-node.current .node-dot {
+            border-color: var(--blue-primary);
+            box-shadow: 0 0 0 4px var(--blue-light);
+        }
+
+        /* Document Grid */
+        .doc-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+        .doc-card {
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-sm);
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .doc-icon { color: var(--text-secondary); }
+
+        /* Chart */
+        .dash-chart {
+            height: 250px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-around;
+            padding-top: 2rem;
+        }
+        .dash-chart-bar-wrap { width: 10%; display: flex; flex-direction: column; align-items: center; gap: 0.5rem; }
+        .dash-chart-bar {
+            width: 100%;
+            background: var(--blue-primary);
+            border-radius: 4px 4px 0 0;
+            height: 0;
+            transition: height 1s ease-out;
+        }
+
+        @media (max-width: 1024px) {
+            .widget-grid { grid-template-columns: repeat(2, 1fr); }
+            .doc-grid { grid-template-columns: repeat(2, 1fr); }
+            .doc-grid > *:nth-child(3):last-child,
+            .widget-grid > *:nth-child(3):last-child {
+                grid-column: 1 / -1;
+                width: calc(50% - 0.75rem);
+                justify-self: center;
+            }
+            .dash-sidebar {
+                position: fixed;
+                left: -280px;
+                top: 0;
+                bottom: 0;
+            }
+            [dir="rtl"] .dash-sidebar { left: auto; right: -280px; }
+            .dash-sidebar.open { left: 0; box-shadow: var(--shadow-lg); }
+            [dir="rtl"] .dash-sidebar.open { left: auto; right: 0; }
+            .dash-hamburger { display: block; }
+            .dash-header { padding: 0 1.5rem; }
+            .dash-content-area { padding: 2rem 1.5rem; }
+            
+            /* Add backdrop for mobile sidebar */
+            .sidebar-backdrop {
+                display: none;
+                position: fixed;
+                inset: 0;
+                background: rgba(0,0,0,0.5);
+                z-index: 90;
+            }
+            .sidebar-backdrop.active { display: block; }
+        }
+
+        @media (max-width: 768px) {
+            .widget-grid { grid-template-columns: 1fr; }
+            .doc-grid { grid-template-columns: 1fr; }
+            .claim-timeline { flex-direction: column; gap: 2rem; align-items: flex-start; }
+            .claim-timeline::before { top: 0; bottom: 0; left: 15px; width: 2px; height: auto; right: auto; }
+            [dir="rtl"] .claim-timeline::before { left: auto; right: 15px; }
+            .timeline-node { flex-direction: row; width: 100%; text-align: left; }
+            [dir="rtl"] .timeline-node { text-align: right; }
+            .dash-table { display: block; overflow-x: auto; white-space: nowrap; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="dashboard-layout">
+        
+        <!-- Sidebar Backdrop for Mobile -->
+        <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
+        <!-- SIDEBAR -->
+        <aside class="dash-sidebar" id="sidebar">
+            <div class="dash-logo-area">
+                <a href="index.html">
+                    <div style="display: flex; align-items: center; gap: 0.75rem;"><img src="assets/logo/favicon.svg" alt="WorkGuard Icon" width="32" height="32"><span style="font-family: var(--font-heading); font-weight: 800; font-size: 1.5rem; letter-spacing: -0.02em; color: var(--text-primary); text-transform: uppercase;">WorkGuard</span></div>
+                </a>
+            </div>
+            
+            <nav class="dash-nav">
+                <a href="#overview" class="dash-nav-link active">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+                    Overview
+                </a>
+                <a href="#claims" class="dash-nav-link">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                    Claim Status
+                </a>
+                <a href="#documents" class="dash-nav-link">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+                    Policy Documents
+                </a>
+                <a href="#premium" class="dash-nav-link">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                    Premium History
+                </a>
+                <a href="#certificates" class="dash-nav-link">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>
+                    Certificates
+                </a>
+                <a href="#risk" class="dash-nav-link">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+                    Risk Overview
+                </a>
+            </nav>
+            
+            <div class="dash-footer">
+                <div style="display: flex; justify-content: center; gap: 0.5rem;">
+                    <button class="icon-btn js-theme-toggle" aria-label="Toggle Theme" style="background: var(--bg-main); border: 1px solid var(--border-color);"></button>
+                    <button class="icon-btn js-dir-toggle" aria-label="Toggle RTL" style="background: var(--bg-main); border: 1px solid var(--border-color); display: flex;">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 9H7M21 9L17 5M21 9L17 13M3 15h14M3 15l4-4M3 15l4 4"/>
+                        </svg>
+                    </button>
+                </div>
+                <a href="index.html" class="btn btn-secondary" style="width: 100%;">Log Out</a>
+            </div>
+        </aside>
+
+        <!-- MAIN AREA -->
+        <main class="dash-main">
+            <!-- Header -->
+            <header class="dash-header">
+                <button class="dash-hamburger" id="sidebarToggle">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+                </button>
+                <div style="flex-grow: 1;"></div>
+                <div class="user-profile">
+                    <span class="text-sm font-weight-600" style="display: none; @media(min-width:576px){display:block;}">Acme Manufacturing Corp.</span>
+                    <div class="avatar">AM</div>
+                </div>
+            </header>
+
+            <!-- Content -->
+            <div class="dash-content-area">
+                
+                <!-- PANE: Overview -->
+                <div class="dash-pane active" id="overview">
+                    <h2 class="text-h2" style="margin-bottom: 2rem;">Good morning, Business Client</h2>
+                    
+                    <div class="widget-grid">
+                        <div class="widget-card">
+                            <div class="widget-title">Active Policies</div>
+                            <div class="widget-value js-counter" data-target="2">0</div>
+                        </div>
+                        <div class="widget-card">
+                            <div class="widget-title">Open Claims</div>
+                            <div class="widget-value text-blue js-counter" data-target="4" style="color: var(--blue-primary);">0</div>
+                        </div>
+                        <div class="widget-card">
+                            <div class="widget-title">Compliance Status</div>
+                            <div class="widget-value js-counter" data-target="94" data-suffix="%">0%</div>
+                        </div>
+                        <div class="widget-card">
+                            <div class="widget-title">Next Renewal</div>
+                            <div class="widget-value js-counter" data-target="42" data-suffix=" Days">0 Days</div>
+                        </div>
+                    </div>
+                    
+                    <div class="dash-card">
+                        <div class="card-header">
+                            <h3 class="text-h3" style="font-size: 1.25rem; margin: 0;">Recent Activity</h3>
+                        </div>
+                        <table class="dash-table">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Description</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Oct 12, 2026</td>
+                                    <td>Claim #WC-9942 Status Updated</td>
+                                    <td><span class="status-badge status-review">Under Review</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Oct 05, 2026</td>
+                                    <td>Certificate of Insurance Issued</td>
+                                    <td><span class="status-badge status-active">Completed</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Sep 28, 2026</td>
+                                    <td>Premium Payment Processed</td>
+                                    <td><span class="status-badge status-active">Paid</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- PANE: Claims -->
+                <div class="dash-pane" id="claims">
+                    <h2 class="text-h2" style="margin-bottom: 2rem;">Claim Status Tracker</h2>
+                    
+                    <div class="dash-card">
+                        <div class="card-header">
+                            <div>
+                                <h3 class="text-h3" style="font-size: 1.25rem; margin: 0;">Claim #WC-9942</h3>
+                                <p class="text-secondary text-sm">Incident Date: Oct 10, 2026</p>
+                            </div>
+                            <span class="status-badge status-review">Under Review</span>
+                        </div>
+                        
+                        <div class="claim-timeline">
+                            <div class="timeline-node completed">
+                                <div class="node-dot"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+                                <span class="text-sm font-weight-600">Submitted</span>
+                            </div>
+                            <div class="timeline-node current">
+                                <div class="node-dot"></div>
+                                <span class="text-sm font-weight-600">Under Review</span>
+                            </div>
+                            <div class="timeline-node">
+                                <div class="node-dot"></div>
+                                <span class="text-sm font-weight-600 text-secondary">Documentation</span>
+                            </div>
+                            <div class="timeline-node">
+                                <div class="node-dot"></div>
+                                <span class="text-sm font-weight-600 text-secondary">Assessment</span>
+                            </div>
+                            <div class="timeline-node">
+                                <div class="node-dot"></div>
+                                <span class="text-sm font-weight-600 text-secondary">Resolution</span>
+                            </div>
+                        </div>
+                        
+                        <div style="background: var(--bg-main); padding: 1rem; border-radius: var(--radius-sm); border: 1px solid var(--border-color);">
+                            <p class="text-sm text-secondary"><strong>Current Action:</strong> The adjuster is reviewing the initial incident report. No further action is required from you at this moment.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PANE: Documents -->
+                <div class="dash-pane" id="documents">
+                    <h2 class="text-h2" style="margin-bottom: 2rem;">Policy Documents</h2>
+                    
+                    <div class="doc-grid">
+                        <div class="doc-card">
+                            <svg class="doc-icon" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+                            <div>
+                                <div class="font-weight-600">Workers' Compensation Policy</div>
+                                <div class="text-xs text-secondary">Term: 2026-2027</div>
+                            </div>
+                            <div style="display: flex; gap: 0.5rem; margin-top: auto;">
+                                <button class="btn btn-outline" style="padding: 0.5rem; flex-grow: 1; font-size: 0.875rem;">View</button>
+                                <button class="btn btn-primary" style="padding: 0.5rem; flex-grow: 1; font-size: 0.875rem;">Download</button>
+                            </div>
+                        </div>
+                        <div class="doc-card">
+                            <svg class="doc-icon" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+                            <div>
+                                <div class="font-weight-600">Coverage Summary</div>
+                                <div class="text-xs text-secondary">Updated Oct 1, 2026</div>
+                            </div>
+                            <div style="display: flex; gap: 0.5rem; margin-top: auto;">
+                                <button class="btn btn-outline" style="padding: 0.5rem; flex-grow: 1; font-size: 0.875rem;">View</button>
+                                <button class="btn btn-primary" style="padding: 0.5rem; flex-grow: 1; font-size: 0.875rem;">Download</button>
+                            </div>
+                        </div>
+                        <div class="doc-card">
+                            <svg class="doc-icon" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+                            <div>
+                                <div class="font-weight-600">Safety Documentation</div>
+                                <div class="text-xs text-secondary">IIPP Manual</div>
+                            </div>
+                            <div style="display: flex; gap: 0.5rem; margin-top: auto;">
+                                <button class="btn btn-outline" style="padding: 0.5rem; flex-grow: 1; font-size: 0.875rem;">View</button>
+                                <button class="btn btn-primary" style="padding: 0.5rem; flex-grow: 1; font-size: 0.875rem;">Download</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PANE: Premium -->
+                <div class="dash-pane" id="premium">
+                    <h2 class="text-h2" style="margin-bottom: 2rem;">Premium Payment History</h2>
+                    
+                    <div class="dash-card">
+                        <table class="dash-table">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Policy Number</th>
+                                    <th>Reference</th>
+                                    <th>Amount</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Sep 28, 2026</td>
+                                    <td>POL-8839201</td>
+                                    <td>INV-0926</td>
+                                    <td>$4,250.00</td>
+                                    <td><span class="status-badge status-active">Paid</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Aug 28, 2026</td>
+                                    <td>POL-8839201</td>
+                                    <td>INV-0826</td>
+                                    <td>$4,250.00</td>
+                                    <td><span class="status-badge status-active">Paid</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Jul 28, 2026</td>
+                                    <td>POL-8839201</td>
+                                    <td>INV-0726</td>
+                                    <td>$4,250.00</td>
+                                    <td><span class="status-badge status-active">Paid</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- PANE: Certificates -->
+                <div class="dash-pane" id="certificates">
+                    <h2 class="text-h2" style="margin-bottom: 2rem;">Compliance Certificates</h2>
+                    
+                    <div class="doc-grid">
+                        <div class="doc-card">
+                            <div style="display: flex; justify-content: space-between;">
+                                <span class="status-badge status-active">Valid</span>
+                            </div>
+                            <div>
+                                <div class="font-weight-600" style="margin-top: 1rem;">Certificate of Insurance</div>
+                                <div class="text-sm text-secondary" style="margin-top: 0.5rem;">Issue Date: Nov 1, 2025</div>
+                                <div class="text-sm text-secondary">Expiry Date: Nov 1, 2026</div>
+                            </div>
+                            <button class="btn btn-outline" style="width: 100%; margin-top: auto;">Download Certificate</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PANE: Risk -->
+                <div class="dash-pane" id="risk">
+                    <h2 class="text-h2" style="margin-bottom: 2rem;">Risk Overview</h2>
+                    
+                    <div class="dash-card">
+                        <h3 class="text-h3" style="font-size: 1.25rem; margin-bottom: 2rem;">Risk Exposure by Category</h3>
+                        <div class="dash-chart">
+                            <div class="dash-chart-bar-wrap">
+                                <div class="dash-chart-bar" data-height="30"></div>
+                                <span class="text-xs">Workplace</span>
+                            </div>
+                            <div class="dash-chart-bar-wrap">
+                                <div class="dash-chart-bar" data-height="65"></div>
+                                <span class="text-xs">Claims</span>
+                            </div>
+                            <div class="dash-chart-bar-wrap">
+                                <div class="dash-chart-bar" data-height="20"></div>
+                                <span class="text-xs">Docs</span>
+                            </div>
+                            <div class="dash-chart-bar-wrap">
+                                <div class="dash-chart-bar" data-height="15"></div>
+                                <span class="text-xs">Compliance</span>
+                            </div>
+                            <div class="dash-chart-bar-wrap">
+                                <div class="dash-chart-bar" data-height="45"></div>
+                                <span class="text-xs">Renewal</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/animations.js"></script>
+    <script src="assets/js/dashboard.js"></script>
+    <script>
+        // Sidebar Toggle for Mobile
+        const sidebarToggle = document.getElementById('sidebarToggle');
+        const sidebar = document.getElementById('sidebar');
+        const sidebarBackdrop = document.getElementById('sidebarBackdrop');
+
+        if(sidebarToggle && sidebar && sidebarBackdrop) {
+            sidebarToggle.addEventListener('click', () => {
+                sidebar.classList.add('open');
+                sidebarBackdrop.classList.add('active');
+            });
+            
+            sidebarBackdrop.addEventListener('click', () => {
+                sidebar.classList.remove('open');
+                sidebarBackdrop.classList.remove('active');
+            });
+        }
+    </script>
+</body>
+</html>

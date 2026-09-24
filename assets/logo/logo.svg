@@ -1,0 +1,13 @@
+<svg width="240" height="60" viewBox="0 0 240 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Shield Icon representing Protection and Risk Intelligence -->
+  <path d="M25 10L10 16V28C10 39.0457 16.2164 49.3333 25 54C33.7836 49.3333 40 39.0457 40 28V16L25 10Z" stroke="var(--primary-orange, #E65C00)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M25 10V54C33.7836 49.3333 40 39.0457 40 28V16L25 10Z" fill="var(--primary-orange, #E65C00)" fill-opacity="0.2"/>
+  <circle cx="25" cy="28" r="6" stroke="currentColor" stroke-width="2"/>
+  <path d="M25 22V25M25 31V34M22 28H19M31 28H28" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+  
+  <!-- Text: WORKGUARD -->
+  <text x="52" y="32" font-family="'Inter', 'Manrope', sans-serif" font-weight="800" font-size="22" letter-spacing="1.5" fill="currentColor">WORKGUARD</text>
+  
+  <!-- Subtext: WORKERS' COMPENSATION ADVISORY -->
+  <text x="53" y="46" font-family="'Inter', 'Manrope', sans-serif" font-weight="600" font-size="7.5" letter-spacing="1.8" fill="currentColor" opacity="0.7">WORKERS' COMPENSATION ADVISORY</text>
+</svg>
