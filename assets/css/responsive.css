@@ -124,11 +124,19 @@
 
 /* Max Width 576px (Small Mobile) */
 @media (max-width: 576px) {
-    .grid-4-to-2, .grid-3-to-2-1 {
+    .grid, .services-grid, .framework-grid, .coverage-grid, .benefits-grid, .resources-grid, .strip-grid, .grid-4-to-2, .grid-3-to-2-1 {
         grid-template-columns: 1fr !important;
     }
+    
+    .grid > *:nth-child(3):last-child,
+    .services-grid > *:nth-child(3):last-child,
+    .framework-grid > *:nth-child(3):last-child,
+    .coverage-grid > *:nth-child(3):last-child,
+    .benefits-grid > *:nth-child(3):last-child,
+    .resources-grid > *:nth-child(3):last-child,
+    .strip-grid > *:nth-child(3):last-child,
     .grid-3-to-2-1 > *:last-child {
-        width: 100%;
+        width: 100% !important;
     }
     
     .btn {
@@ -137,6 +145,16 @@
     
     .nav-controls .btn {
         display: none; /* Hide 'Client Portal' in top nav on mobile, moved to menu */
+    }
+    
+    /* Center align the content of framework cards on small mobile */
+    .framework-grid .frame-card {
+        text-align: center;
+    }
+    .framework-grid .frame-card .frame-num {
+        position: static;
+        margin-bottom: 1rem;
+        display: block;
     }
 }
 

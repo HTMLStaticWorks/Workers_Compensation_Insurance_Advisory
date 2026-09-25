@@ -225,6 +225,17 @@
             .ps-grid { grid-template-columns: 1fr; }
             .stats-grid { grid-template-columns: 1fr; gap: 2rem; }
         }
+            @media (max-width: 576px) {
+            .approach-step {
+                flex-direction: column !important;
+                align-items: flex-start !important;
+                gap: 0.5rem !important;
+                padding: 1.5rem 1.25rem !important;
+            }
+            .step-num {
+                margin-bottom: 0.25rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -277,7 +288,7 @@
             <a href="contact.html" class="mobile-nav-link">Contact</a>
             <a href="dashboard.html" class="mobile-nav-link">Dashboard</a>
         </nav>
-        <div class="mobile-controls" style="display: flex; justify-content: center; gap: 1rem; margin-top: 2rem; margin-bottom: 2rem;">
+        <div class="mobile-controls" style="display: flex; justify-content: center; gap: 1rem; margin-top: 0.5rem; margin-bottom: 0.5rem;">
             <button class="icon-btn js-theme-toggle" aria-label="Toggle Theme"></button>
             <button class="icon-btn js-dir-toggle" aria-label="Toggle RTL">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -285,11 +296,11 @@
                 </svg>
             </button>
         </div>
-        <a href="login.html" class="btn btn-primary" style="text-align: center; width: 100%; margin-top: auto;">Login</a>
+        <a href="login.html" class="btn btn-primary" style="text-align: center; width: 100%; margin-top: 0.5rem;">Login</a>
     </div>
 
     <main>
-        <!-- SECTION 01 — HERO -->
+        <!-- SECTION 01 ? HERO -->
         <section class="page-header js-reveal">
             <div class="container text-center" style="max-width: 900px;">
                 <h1 class="text-h1">Advisory built around the realities of modern workplaces.</h1>
@@ -297,7 +308,7 @@
             </div>
         </section>
 
-        <!-- SECTION 02 — OUR APPROACH -->
+        <!-- SECTION 02 ? OUR APPROACH -->
         <section class="section js-reveal" style="padding-top: 4rem;">
             <div class="container">
                 <div class="text-center" style="margin-bottom: 4rem;">
@@ -345,7 +356,7 @@
             </div>
         </section>
 
-        <!-- SECTION 03 — WHY BUSINESSES NEED ADVISORY -->
+        <!-- SECTION 03 ? WHY BUSINESSES NEED ADVISORY -->
         <section class="section" style="background: var(--bg-tertiary);">
             <div class="container js-reveal">
                 <h2 class="text-h2 text-center" style="margin-bottom: 4rem;">Navigating Complexity</h2>
@@ -375,7 +386,7 @@
             </div>
         </section>
 
-        <!-- SECTION 04 — TRUST & RESPONSIBILITY -->
+        <!-- SECTION 04 ? TRUST & RESPONSIBILITY -->
         <section class="section section-dark text-center js-reveal">
             <div class="container" style="max-width: 1200px;">
                 <h2 class="text-h1">Clear advice. Responsible decisions. Stronger protection.</h2>
@@ -459,3 +470,6 @@
     <script src="assets/js/animations.js"></script>
 </body>
 </html>
+
+
+

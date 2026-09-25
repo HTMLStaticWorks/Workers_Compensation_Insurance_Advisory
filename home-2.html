@@ -356,6 +356,16 @@
                 perspective: none;
             }
         }
+        
+        @media (max-width: 576px) {
+            .risk-map-grid {
+                grid-template-columns: 1fr !important;
+            }
+            
+            .risk-map-item img {
+                object-position: top !important;
+            }
+        }
     </style>
 </head>
 
@@ -416,7 +426,7 @@
             <a href="dashboard.html" class="mobile-nav-link">Dashboard</a>
         </nav>
         <div class="mobile-controls"
-            style="display: flex; justify-content: center; gap: 1rem; margin-top: 2rem; margin-bottom: 2rem;">
+            style="display: flex; justify-content: center; gap: 1rem; margin-top: 0.5rem; margin-bottom: 0.5rem;">
             <button class="icon-btn js-theme-toggle" aria-label="Toggle Theme"></button>
             <button class="icon-btn js-dir-toggle" aria-label="Toggle RTL">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -426,7 +436,7 @@
             </button>
         </div>
         <a href="login.html" class="btn btn-primary"
-            style="text-align: center; width: 100%; margin-top: auto;">Login</a>
+            style="text-align: center; width: 100%; margin-top: 0.5rem;">Login</a>
     </div>
 
     <main>
@@ -560,7 +570,7 @@
                     <div
                         style="position: relative; height: 100%; min-height: 500px; background: url('https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&q=80&w=1400') center/cover;">
                         <!-- Floating Claim Status UI -->
-                        <div
+                        <div class="claim-status-card"
                             style="position: absolute; bottom: 2rem; right: -2rem; background: var(--glass-bg); backdrop-filter: blur(10px); padding: 1.5rem; border-radius: var(--radius-md); box-shadow: var(--shadow-lg); width: 300px; border: 1px solid var(--glass-border);">
                             <div class="text-xs text-blue" style="margin-bottom: 0.5rem;">Active Claim #WC-9942</div>
                             <h4 style="font-size: 1rem; margin-bottom: 1rem;">Status: Documentation Needed</h4>
@@ -607,6 +617,15 @@
 
                     .section.js-reveal .grid>div:first-child {
                         min-height: 400px;
+                    }
+                    
+                    .claim-status-card {
+                        right: 0 !important;
+                        left: 0 !important;
+                        margin: 0 auto !important;
+                        bottom: 1rem !important;
+                        width: 90% !important;
+                        max-width: 320px !important;
                     }
                 }
             </style>
@@ -760,3 +779,5 @@
 </body>
 
 </html>
+
+

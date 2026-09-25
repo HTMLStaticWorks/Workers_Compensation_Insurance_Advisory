@@ -112,14 +112,14 @@
             justify-content: center;
         }
         .checklist-mockup {
-            background: #FFF;
+            background: var(--bg-tertiary);
             width: 70%;
             height: 80%;
             border-radius: var(--radius-md);
             box-shadow: var(--shadow-lg);
             padding: 2rem;
             transform: rotate(2deg);
-            color: #1A1A1A;
+            color: var(--text-primary);
         }
         .mockup-line {
             height: 8px;
@@ -144,7 +144,24 @@
         @media (max-width: 768px) {
             .resource-grid { grid-template-columns: repeat(2, 1fr) !important; }
             .newsletter-form { flex-direction: column; }
-            .featured-content { padding: 2rem; }
+            .featured-content { padding: 2rem; align-items: center !important; text-align: center !important; }
+            .featured-content ul { align-items: flex-start !important; text-align: left !important; align-self: center !important; }
+            .featured-content .btn, .featured-content .badge { align-self: center !important; }
+            .resource-action {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .checklist-mockup {
+                height: auto !important;
+                width: 90% !important;
+                text-align: left !important;
+            }
+            .resource-grid { 
+                grid-template-columns: 1fr !important; 
+            }
         }
     </style>
 </head>
@@ -198,7 +215,7 @@
             <a href="contact.html" class="mobile-nav-link">Contact</a>
             <a href="dashboard.html" class="mobile-nav-link">Dashboard</a>
         </nav>
-        <div class="mobile-controls" style="display: flex; justify-content: center; gap: 1rem; margin-top: 2rem; margin-bottom: 2rem;">
+        <div class="mobile-controls" style="display: flex; justify-content: center; gap: 1rem; margin-top: 0.5rem; margin-bottom: 0.5rem;">
             <button class="icon-btn js-theme-toggle" aria-label="Toggle Theme"></button>
             <button class="icon-btn js-dir-toggle" aria-label="Toggle RTL">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -206,7 +223,7 @@
                 </svg>
             </button>
         </div>
-        <a href="login.html" class="btn btn-primary" style="text-align: center; width: 100%; margin-top: auto;">Login</a>
+        <a href="login.html" class="btn btn-primary" style="text-align: center; width: 100%; margin-top: 0.5rem;">Login</a>
     </div>
 
     <main>
@@ -234,17 +251,25 @@
                     </div>
                     <div class="featured-visual">
                         <div class="checklist-mockup">
-                            <h4 style="margin-bottom: 1rem; border-bottom: 1px solid #E2E2DF; padding-bottom: 0.5rem;">Coverage Review</h4>
-                            <div class="mockup-line" style="width: 100%;"></div>
-                            <div class="mockup-line" style="width: 80%;"></div>
-                            <div class="mockup-line" style="width: 90%;"></div>
-                            <div style="display: flex; gap: 0.5rem; margin-top: 2rem;">
-                                <div style="width: 16px; height: 16px; border: 2px solid #0066CC; border-radius: 2px;"></div>
-                                <div class="mockup-line" style="width: 60%; margin: 0;"></div>
+                            <h4 style="margin-bottom: 1rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem; color: var(--blue-primary);">Coverage Review</h4>
+                            <p style="font-size: 0.875rem; color: var(--text-secondary); margin-bottom: 1.5rem; line-height: 1.5;">Identify critical gaps in your current policy to ensure comprehensive business protection.</p>
+                            <div style="display: flex; gap: 0.75rem; margin-top: 1rem; align-items: center;">
+                                <div style="width: 16px; height: 16px; border: 2px solid var(--blue-primary); border-radius: 2px; flex-shrink: 0; position: relative; display: flex; align-items: center; justify-content: center;">
+                                    <svg viewBox="0 0 24 24" style="width: 12px; height: 12px;" fill="none" stroke="var(--blue-primary)" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                </div>
+                                <span style="font-size: 0.9rem; font-weight: 500; color: var(--text-primary);">Verify Class Codes</span>
                             </div>
-                            <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
-                                <div style="width: 16px; height: 16px; border: 2px solid #0066CC; border-radius: 2px;"></div>
-                                <div class="mockup-line" style="width: 50%; margin: 0;"></div>
+                            <div style="display: flex; gap: 0.75rem; margin-top: 1rem; align-items: center;">
+                                <div style="width: 16px; height: 16px; border: 2px solid var(--blue-primary); border-radius: 2px; flex-shrink: 0; position: relative; display: flex; align-items: center; justify-content: center;">
+                                    <svg viewBox="0 0 24 24" style="width: 12px; height: 12px;" fill="none" stroke="var(--blue-primary)" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                </div>
+                                <span style="font-size: 0.9rem; font-weight: 500; color: var(--text-primary);">Check Policy Limits</span>
+                            </div>
+                            <div style="display: flex; gap: 0.75rem; margin-top: 1rem; align-items: center;">
+                                <div style="width: 16px; height: 16px; border: 2px solid var(--blue-primary); border-radius: 2px; flex-shrink: 0; position: relative; display: flex; align-items: center; justify-content: center;">
+                                    <svg viewBox="0 0 24 24" style="width: 12px; height: 12px;" fill="none" stroke="var(--blue-primary)" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                </div>
+                                <span style="font-size: 0.9rem; font-weight: 500; color: var(--text-primary);">Assess Premium Accuracy</span>
                             </div>
                         </div>
                     </div>
@@ -434,3 +459,6 @@
     <script src="assets/js/animations.js"></script>
 </body>
 </html>
+
+
+

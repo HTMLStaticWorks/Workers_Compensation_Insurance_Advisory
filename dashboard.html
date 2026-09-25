@@ -317,12 +317,27 @@
         @media (max-width: 768px) {
             .widget-grid { grid-template-columns: 1fr; }
             .doc-grid { grid-template-columns: 1fr; }
+            .doc-grid > *:nth-child(3):last-child,
+            .widget-grid > *:nth-child(3):last-child {
+                width: 100%;
+            }
             .claim-timeline { flex-direction: column; gap: 2rem; align-items: flex-start; }
             .claim-timeline::before { top: 0; bottom: 0; left: 15px; width: 2px; height: auto; right: auto; }
             [dir="rtl"] .claim-timeline::before { left: auto; right: 15px; }
             .timeline-node { flex-direction: row; width: 100%; text-align: left; }
             [dir="rtl"] .timeline-node { text-align: right; }
             .dash-table { display: block; overflow-x: auto; white-space: nowrap; }
+            
+            .dashboard-layout, .dash-main {
+                height: auto !important;
+                min-height: 100vh;
+                overflow: visible !important;
+            }
+            .dash-content-area {
+                overflow: visible !important;
+                height: auto !important;
+                padding-bottom: 3rem !important;
+            }
         }
     </style>
 </head>
@@ -657,3 +672,5 @@
     </script>
 </body>
 </html>
+
+
