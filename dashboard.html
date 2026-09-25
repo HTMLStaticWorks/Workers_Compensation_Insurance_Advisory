@@ -315,8 +315,44 @@
         }
 
         @media (max-width: 768px) {
-            .widget-grid { grid-template-columns: 1fr; }
-            .doc-grid { grid-template-columns: 1fr; }
+            .widget-grid { 
+                grid-template-columns: 1fr; 
+                justify-items: center; 
+            }
+            .widget-card { 
+                width: 100%; 
+                text-align: center; 
+                display: flex; 
+                flex-direction: column; 
+                align-items: center; 
+                justify-content: center; 
+                box-sizing: border-box; 
+            }
+            .dash-card { 
+                max-width: 100%; 
+                overflow: hidden; 
+                box-sizing: border-box; 
+            }
+            .dash-card .card-header {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                gap: 1rem;
+            }
+            .dash-card h3 {
+                text-align: center;
+                width: 100%;
+            }
+            .doc-grid { 
+                grid-template-columns: 1fr; 
+                justify-items: center; 
+            }
+            .doc-card { 
+                width: 100%; 
+                text-align: center; 
+                align-items: center; 
+                box-sizing: border-box; 
+            }
             .doc-grid > *:nth-child(3):last-child,
             .widget-grid > *:nth-child(3):last-child {
                 width: 100%;
@@ -326,17 +362,20 @@
             [dir="rtl"] .claim-timeline::before { left: auto; right: 15px; }
             .timeline-node { flex-direction: row; width: 100%; text-align: left; }
             [dir="rtl"] .timeline-node { text-align: right; }
-            .dash-table { display: block; overflow-x: auto; white-space: nowrap; }
+            .dash-table { display: block; overflow-x: auto; white-space: nowrap; width: 100%; }
             
             .dashboard-layout, .dash-main {
                 height: auto !important;
                 min-height: 100vh;
-                overflow: visible !important;
+                overflow-x: hidden !important;
+                width: 100%;
             }
             .dash-content-area {
-                overflow: visible !important;
+                overflow-x: hidden !important;
                 height: auto !important;
                 padding-bottom: 3rem !important;
+                width: 100%;
+                min-width: 0;
             }
         }
     </style>
