@@ -68,6 +68,7 @@ html {
 
 body {
     font-family: var(--font-body);
+    font-weight: 400;
     background-color: var(--bg-main);
     color: var(--text-primary);
     line-height: 1.6;
@@ -79,10 +80,19 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-heading);
-    font-weight: 700;
+    font-weight: 600;
     line-height: 1.2;
     color: var(--text-primary);
     margin-bottom: 1rem;
+}
+
+p {
+    font-family: var(--font-body);
+    font-weight: 400;
+}
+
+p.text-xs, p.text-sm, p.text-lead, p.text-secondary {
+    font-weight: 400;
 }
 
 a {
@@ -102,10 +112,10 @@ img {
 }
 
 /* --- 3. Typography Utility --- */
-.text-h1 { font-size: clamp(2.5rem, 5vw, 4.5rem); letter-spacing: -0.02em; }
-.text-h2 { font-size: clamp(2rem, 4vw, 3.5rem); letter-spacing: -0.02em; }
-.text-h3 { font-size: clamp(1.5rem, 3vw, 2.5rem); letter-spacing: -0.01em; }
-.text-lead { font-size: clamp(1.125rem, 2vw, 1.375rem); color: var(--text-secondary); line-height: 1.7; }
+.text-h1 { font-size: clamp(2.5rem, 5vw, 4.5rem); letter-spacing: -0.02em; font-weight: 600; }
+.text-h2 { font-size: clamp(2rem, 4vw, 3.5rem); letter-spacing: -0.02em; font-weight: 600; }
+.text-h3 { font-size: clamp(1.5rem, 3vw, 2.5rem); letter-spacing: -0.01em; font-weight: 600; }
+.text-lead { font-size: clamp(1.125rem, 2vw, 1.375rem); color: var(--text-secondary); line-height: 1.7; font-weight: 400; }
 .text-sm { font-size: 0.875rem; }
 .text-xs { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 600; }
 .text-blue { color: var(--blue-primary); }
@@ -215,7 +225,7 @@ img {
     background-color: var(--blue-light);
     color: var(--blue-primary);
     font-size: 0.75rem;
-    font-weight: 700;
+    font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.05em;
     border-radius: var(--radius-full);
@@ -341,6 +351,8 @@ img {
     padding: 6rem 2rem 2rem;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    text-align: center;
     box-shadow: var(--shadow-lg);
     transition: right var(--transition-base);
     overflow-y: auto;
@@ -360,6 +372,9 @@ img {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
     gap: 1.5rem;
     margin-top: 2rem;
     margin-bottom: 1rem;
@@ -367,11 +382,29 @@ img {
 .mobile-nav-link {
     font-size: 1.25rem;
     font-weight: 600;
+    text-align: center;
+    width: 100%;
+    display: block;
 }
 .mobile-controls {
     display: flex;
+    justify-content: center;
+    align-items: center;
     gap: 1rem;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
+    width: 100%;
+}
+.mobile-menu .btn,
+.mobile-menu a.btn,
+.mobile-menu .btn-primary {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    align-self: center;
+    margin: 0.75rem auto 0;
+    width: 100%;
+    max-width: 240px;
 }
 
 /* --- 7. Modal System --- */
@@ -587,4 +620,840 @@ textarea.form-control {
 [dir="rtl"] .back-to-top {
     right: auto;
     left: 2rem;
+}
+
+/* --- 11. Sectors Served & Industry Solutions --- */
+.sector-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.sector-card {
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 2.25rem;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    position: relative;
+}
+
+.sector-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--blue-primary);
+}
+
+.sector-card-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.25rem;
+    margin-bottom: 1.25rem;
+}
+
+.sector-icon {
+    width: 3.25rem;
+    height: 3.25rem;
+    border-radius: var(--radius-sm);
+    background: var(--blue-light);
+    color: var(--blue-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+[data-theme="dark"] .sector-icon {
+    background: rgba(0, 102, 204, 0.15);
+    color: #4da6ff;
+}
+
+.sector-badge {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--blue-primary);
+    margin-bottom: 0.25rem;
+}
+
+.sector-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0;
+    color: var(--text-primary);
+    line-height: 1.3;
+}
+
+.sector-desc {
+    color: var(--text-secondary);
+    font-size: 0.9375rem;
+    font-weight: 400;
+    line-height: 1.6;
+    margin-bottom: 1.25rem;
+}
+
+.sector-code-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 0.25rem 0.625rem;
+    border-radius: var(--radius-full);
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    margin-bottom: 1.25rem;
+}
+
+.sector-section-divider {
+    border: 0;
+    border-top: 1px dashed var(--border-color);
+    margin: 1.25rem 0;
+}
+
+.sector-feature-block {
+    margin-bottom: 1.25rem;
+}
+
+.sector-feature-heading {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--text-primary);
+    margin-bottom: 0.625rem;
+}
+
+.sector-feature-heading svg {
+    color: var(--blue-primary);
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+}
+
+.sector-feature-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.sector-feature-list li {
+    font-size: 0.875rem;
+    font-weight: 400;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    position: relative;
+    padding-left: 1.25rem;
+}
+
+[dir="rtl"] .sector-feature-list li {
+    padding-left: 0;
+    padding-right: 1.25rem;
+}
+
+.sector-feature-list li::before {
+    content: "•";
+    position: absolute;
+    left: 0.25rem;
+    top: -0.1rem;
+    color: var(--blue-primary);
+    font-size: 1.1rem;
+}
+
+[dir="rtl"] .sector-feature-list li::before {
+    left: auto;
+    right: 0.25rem;
+}
+
+.sector-card-footer {
+    margin-top: auto;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.sector-footer-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--blue-primary);
+    text-decoration: none;
+    transition: gap 0.2s ease, color 0.2s ease;
+}
+
+.sector-footer-link:hover {
+    gap: 0.625rem;
+    color: var(--blue-hover);
+}
+
+.sector-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+.sector-tab-btn {
+    padding: 0.5rem 1.25rem;
+    border-radius: var(--radius-full);
+    border: 1px solid var(--border-color);
+    background: var(--bg-tertiary);
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.sector-tab-btn:hover,
+.sector-tab-btn.active {
+    background: var(--blue-primary);
+    color: #ffffff;
+    border-color: var(--blue-primary);
+}
+
+/* --- 12. Index Sector Explorer (Interactive Tabs & Showcase) --- */
+.sector-explorer {
+    margin-top: 2.5rem;
+}
+
+.sector-nav-pills {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-bottom: 2.5rem;
+}
+
+.sector-pill {
+    padding: 0.75rem 1.35rem;
+    border-radius: var(--radius-full);
+    border: 1px solid var(--border-color);
+    background: var(--bg-tertiary);
+    color: var(--text-secondary);
+    font-size: 0.9375rem;
+    font-weight: 500;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.625rem;
+    transition: all 0.25s ease;
+}
+
+.sector-pill svg {
+    width: 18px;
+    height: 18px;
+    color: var(--blue-primary);
+    transition: color 0.25s ease;
+}
+
+.sector-pill:hover {
+    border-color: var(--blue-primary);
+    color: var(--text-primary);
+    transform: translateY(-2px);
+}
+
+.sector-pill.active {
+    background: var(--blue-primary);
+    color: #ffffff;
+    border-color: var(--blue-primary);
+    box-shadow: 0 4px 14px rgba(0, 102, 204, 0.25);
+}
+
+.sector-pill.active svg {
+    color: #ffffff;
+}
+
+.sector-panel {
+    display: none;
+    animation: fadeInSector 0.4s ease forwards;
+}
+
+.sector-panel.active {
+    display: grid;
+    grid-template-columns: 1fr 1.25fr;
+    gap: 2.5rem;
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 3rem;
+    box-shadow: var(--shadow-md);
+}
+
+@keyframes fadeInSector {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.sector-profile-col {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.sector-status-bar {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.sector-severity-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.25rem 0.625rem;
+    border-radius: var(--radius-full);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    background: rgba(220, 53, 69, 0.1);
+    color: #dc3545;
+    border: 1px solid rgba(220, 53, 69, 0.2);
+}
+
+.sector-severity-chip.moderate {
+    background: rgba(255, 193, 7, 0.12);
+    color: #d39e00;
+    border-color: rgba(255, 193, 7, 0.25);
+}
+
+.sector-profile-title {
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0 0 0.75rem;
+    line-height: 1.25;
+}
+
+.sector-profile-desc {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.sector-metric-strip {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    padding: 1.25rem;
+    background: var(--bg-secondary);
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-color);
+    margin-bottom: 1.5rem;
+}
+
+.sector-metric-item h5 {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+    margin: 0 0 0.25rem;
+}
+
+.sector-metric-item p {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.sector-solutions-col {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.sector-solution-card {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 1.5rem 1.75rem;
+    transition: border-color 0.2s ease;
+}
+
+.sector-solution-card:hover {
+    border-color: var(--blue-primary);
+}
+
+.sector-solution-card h4 {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0 0 0.875rem;
+}
+
+.sector-solution-card h4 svg {
+    color: var(--blue-primary);
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+}
+
+.sector-solution-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+}
+
+.sector-solution-card ul li {
+    font-size: 0.875rem;
+    font-weight: 400;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    position: relative;
+    padding-left: 1.25rem;
+}
+
+[dir="rtl"] .sector-solution-card ul li {
+    padding-left: 0;
+    padding-right: 1.25rem;
+}
+
+.sector-solution-card ul li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--blue-primary);
+    font-weight: 600;
+    font-size: 0.85rem;
+}
+
+[dir="rtl"] .sector-solution-card ul li::before {
+    left: auto;
+    right: 0;
+}
+
+/* --- 13. Services Sector Deliverable Cards --- */
+.services-sector-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.25rem;
+    margin-top: 3rem;
+}
+
+.service-sector-card {
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-sector-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--blue-primary);
+    box-shadow: var(--shadow-md);
+}
+
+.service-sector-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.service-sector-title-wrap h3 {
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0 0 0.35rem;
+}
+
+.service-sector-tag {
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--blue-primary);
+}
+
+.service-deliverable-section {
+    margin-bottom: 1.5rem;
+}
+
+.service-deliverable-heading {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--text-primary);
+    margin-bottom: 0.75rem;
+}
+
+.service-deliverable-heading svg {
+    color: var(--blue-primary);
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+}
+
+.service-deliverable-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.service-deliverable-list li {
+    font-size: 0.875rem;
+    font-weight: 400;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    position: relative;
+    padding-left: 1.25rem;
+}
+
+[dir="rtl"] .service-deliverable-list li {
+    padding-left: 0;
+    padding-right: 1.25rem;
+}
+
+.service-deliverable-list li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--blue-primary);
+    font-weight: 600;
+}
+
+[dir="rtl"] .service-deliverable-list li::before {
+    left: auto;
+    right: 0;
+}
+
+.service-outcome-banner {
+    margin-top: auto;
+    padding: 1rem 1.25rem;
+    background: var(--blue-light);
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+}
+
+[data-theme="dark"] .service-outcome-banner {
+    background: rgba(0, 102, 204, 0.15);
+}
+
+.service-outcome-banner span {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--blue-primary);
+}
+
+[data-theme="dark"] .service-outcome-banner span {
+    color: #4da6ff;
+}
+
+/* --- 14. Coverage Statutory Directives Matrix --- */
+.coverage-matrix-container {
+    margin-top: 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.coverage-sector-row {
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.coverage-sector-row:hover {
+    border-color: var(--blue-primary);
+    box-shadow: var(--shadow-sm);
+}
+
+.coverage-row-header {
+    background: var(--bg-secondary);
+    padding: 1.25rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.coverage-row-title {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.coverage-row-title h3 {
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin: 0;
+    color: var(--text-primary);
+}
+
+.coverage-code-pill {
+    padding: 0.25rem 0.65rem;
+    border-radius: var(--radius-full);
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+.coverage-row-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1.5rem;
+    padding: 2rem;
+}
+
+.coverage-col-block h5 {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--blue-primary);
+    margin: 0 0 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+}
+
+.coverage-col-block ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.coverage-col-block ul li {
+    font-size: 0.875rem;
+    font-weight: 400;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    position: relative;
+    padding-left: 1.15rem;
+}
+
+[dir="rtl"] .coverage-col-block ul li {
+    padding-left: 0;
+    padding-right: 1.15rem;
+}
+
+.coverage-col-block ul li::before {
+    content: "•";
+    position: absolute;
+    left: 0.25rem;
+    top: -0.1rem;
+    color: var(--blue-primary);
+}
+
+[dir="rtl"] .coverage-col-block ul li::before {
+    left: auto;
+    right: 0.25rem;
+}
+
+/* --- 15. Home-2 Sector Risk Intelligence Telemetry --- */
+.telemetry-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.telemetry-card {
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+.telemetry-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--blue-primary);
+}
+
+.telemetry-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.telemetry-header h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin: 0;
+    color: var(--text-primary);
+}
+
+.telemetry-badge {
+    padding: 0.2rem 0.5rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.telemetry-badge.critical {
+    background: rgba(220, 53, 69, 0.15);
+    color: #e63946;
+    border: 1px solid rgba(220, 53, 69, 0.3);
+}
+
+.telemetry-badge.high {
+    background: rgba(253, 126, 20, 0.15);
+    color: #fd7e14;
+    border: 1px solid rgba(253, 126, 20, 0.3);
+}
+
+.telemetry-badge.moderate {
+    background: rgba(13, 110, 253, 0.15);
+    color: var(--blue-primary);
+    border: 1px solid rgba(13, 110, 253, 0.3);
+}
+
+.telemetry-risk-meter {
+    margin: 0.75rem 0 1.25rem;
+}
+
+.telemetry-risk-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    margin-bottom: 0.35rem;
+}
+
+.telemetry-bar-bg {
+    width: 100%;
+    height: 6px;
+    background: var(--bg-secondary);
+    border-radius: var(--radius-full);
+    overflow: hidden;
+}
+
+.telemetry-bar-fill {
+    height: 100%;
+    border-radius: var(--radius-full);
+    background: var(--blue-primary);
+}
+
+.telemetry-bar-fill.critical { background: #e63946; }
+.telemetry-bar-fill.high { background: #fd7e14; }
+
+.telemetry-data-callout {
+    padding: 0.875rem 1rem;
+    background: var(--bg-secondary);
+    border-left: 3px solid var(--blue-primary);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    margin-bottom: 1.25rem;
+}
+
+[dir="rtl"] .telemetry-data-callout {
+    border-left: none;
+    border-right: 3px solid var(--blue-primary);
+    border-radius: var(--radius-sm) 0 0 var(--radius-sm);
+}
+
+.telemetry-data-callout p {
+    font-size: 0.8125rem;
+    font-weight: 400;
+    color: var(--text-secondary);
+    margin: 0;
+    line-height: 1.45;
+}
+
+.telemetry-protocol-block h5 {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-primary);
+    margin: 0 0 0.5rem;
+}
+
+.telemetry-protocol-block ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+}
+
+.telemetry-protocol-block ul li {
+    font-size: 0.8125rem;
+    font-weight: 400;
+    color: var(--text-secondary);
+    line-height: 1.4;
+    position: relative;
+    padding-left: 1rem;
+}
+
+[dir="rtl"] .telemetry-protocol-block ul li {
+    padding-left: 0;
+    padding-right: 1rem;
+}
+
+.telemetry-protocol-block ul li::before {
+    content: "■";
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-size: 0.6rem;
+    color: var(--blue-primary);
+}
+
+[dir="rtl"] .telemetry-protocol-block ul li::before {
+    left: auto;
+    right: 0;
 }

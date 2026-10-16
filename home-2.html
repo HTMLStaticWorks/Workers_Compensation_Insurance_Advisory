@@ -83,7 +83,7 @@
 
         .viz-card .metric {
             font-size: 2rem;
-            font-weight: 700;
+            font-weight: 600;
             font-family: var(--font-heading);
             color: var(--blue-primary);
             line-height: 1;
@@ -515,7 +515,250 @@
             </div>
         </section>
 
-        <!-- SECTION 03 — COVERAGE GAP ANALYSIS -->
+        <!-- SECTION 03 — SECTORS SERVED & RISK TELEMETRY -->
+        <section class="section js-reveal" id="sectors" style="background: var(--bg-secondary);">
+            <div class="container">
+                <div class="text-center" style="max-width: 780px; margin: 0 auto 3rem;">
+                    <span class="badge">Sector Intelligence</span>
+                    <h2 class="text-h2">Sector Risk Intelligence & Incident Telemetry</h2>
+                    <p class="text-secondary" style="margin-top: 1rem; font-weight: 400;">
+                        Real-time statutory loss frequency, catastrophic severity metrics, and incident escalation protocols tailored across high-risk commercial industry sectors.
+                    </p>
+                </div>
+
+                <div class="telemetry-grid">
+                    <!-- 1. Construction & Contracting -->
+                    <div class="telemetry-card js-reveal">
+                        <div class="telemetry-header">
+                            <div>
+                                <h3 style="font-size: 1.15rem; font-weight: 600;">Construction & Contracting</h3>
+                                <span style="font-size: 0.75rem; color: var(--text-muted); font-weight: 400;">Class Codes: 5403, 5445, 5606, 5022</span>
+                            </div>
+                            <span class="telemetry-badge critical">Critical Severity</span>
+                        </div>
+
+                        <div class="telemetry-risk-meter">
+                            <div class="telemetry-risk-labels">
+                                <span>Loss Frequency: 78%</span>
+                                <span>Claim Severity: 92%</span>
+                            </div>
+                            <div class="telemetry-bar-bg" style="margin-top: 0.4rem;">
+                                <div class="telemetry-bar-fill critical" style="width: 92%;"></div>
+                            </div>
+                        </div>
+
+                        <div class="telemetry-data-callout">
+                            <p><strong>Primary Loss Driver:</strong> Elevated falls and uninsured subcontractor indemnity disputes account for 64% of total incurred loss values, driving persistent MOD inflation.</p>
+                        </div>
+
+                        <div class="telemetry-protocol-block" style="margin-bottom: 1.5rem;">
+                            <h5>Incident Escalation Protocols</h5>
+                            <ul>
+                                <li>Mandatory 2-hour on-site incident reconstruction and digital evidence logging</li>
+                                <li>Immediate subcontractor COI validation and hold-harmless audit review</li>
+                                <li>Modified-duty return-to-work pathway within 72 hours for injured trades</li>
+                            </ul>
+                        </div>
+
+                        <div style="margin-top: auto; padding-top: 1rem; border-top: 1px solid var(--border-color);">
+                            <a href="services.html#sectors" class="btn btn-sm btn-outline" style="width: 100%; text-align: center;">View Construction Advisory &rarr;</a>
+                        </div>
+                    </div>
+
+                    <!-- 2. Manufacturing & Fabrication -->
+                    <div class="telemetry-card js-reveal">
+                        <div class="telemetry-header">
+                            <div>
+                                <h3 style="font-size: 1.15rem; font-weight: 600;">Manufacturing & Industrial</h3>
+                                <span style="font-size: 0.75rem; color: var(--text-muted); font-weight: 400;">Class Codes: 3632, 3179, 3076, 3507</span>
+                            </div>
+                            <span class="telemetry-badge critical">Critical Severity</span>
+                        </div>
+
+                        <div class="telemetry-risk-meter">
+                            <div class="telemetry-risk-labels">
+                                <span>Loss Frequency: 62%</span>
+                                <span>Claim Severity: 84%</span>
+                            </div>
+                            <div class="telemetry-bar-bg" style="margin-top: 0.4rem;">
+                                <div class="telemetry-bar-fill critical" style="width: 84%;"></div>
+                            </div>
+                        </div>
+
+                        <div class="telemetry-data-callout">
+                            <p><strong>Primary Loss Driver:</strong> Point-of-operation machine entanglement, LOTO bypasses, and cumulative repetitive strain lead to extended indemnity duration and litigation.</p>
+                        </div>
+
+                        <div class="telemetry-protocol-block" style="margin-bottom: 1.5rem;">
+                            <h5>Incident Escalation Protocols</h5>
+                            <ul>
+                                <li>Root-cause Lockout/Tagout mechanical inspection and energy verification</li>
+                                <li>Early-intervention occupational physical therapy triage within 24 hours</li>
+                                <li>Machine manufacturer third-party product liability action-over review</li>
+                            </ul>
+                        </div>
+
+                        <div style="margin-top: auto; padding-top: 1rem; border-top: 1px solid var(--border-color);">
+                            <a href="services.html#sectors" class="btn btn-sm btn-outline" style="width: 100%; text-align: center;">View Manufacturing Advisory &rarr;</a>
+                        </div>
+                    </div>
+
+                    <!-- 3. Healthcare Systems & Clinics -->
+                    <div class="telemetry-card js-reveal">
+                        <div class="telemetry-header">
+                            <div>
+                                <h3 style="font-size: 1.15rem; font-weight: 600;">Healthcare & Clinical Systems</h3>
+                                <span style="font-size: 0.75rem; color: var(--text-muted); font-weight: 400;">Class Codes: 8832, 8829, 9040, 8835</span>
+                            </div>
+                            <span class="telemetry-badge high">High Severity</span>
+                        </div>
+
+                        <div class="telemetry-risk-meter">
+                            <div class="telemetry-risk-labels">
+                                <span>Loss Frequency: 86%</span>
+                                <span>Claim Severity: 58%</span>
+                            </div>
+                            <div class="telemetry-bar-bg" style="margin-top: 0.4rem;">
+                                <div class="telemetry-bar-fill high" style="width: 72%;"></div>
+                            </div>
+                        </div>
+
+                        <div class="telemetry-data-callout">
+                            <p><strong>Primary Loss Driver:</strong> Biomechanical patient transfer overexertion and contaminated needle-stick sharps incidents represent 71% of initial injury filings.</p>
+                        </div>
+
+                        <div class="telemetry-protocol-block" style="margin-bottom: 1.5rem;">
+                            <h5>Incident Escalation Protocols</h5>
+                            <ul>
+                                <li>Zero-lift mechanical hoist compliance check and transfer equipment review</li>
+                                <li>Immediate post-exposure bloodborne pathogen medical protocol within 60 min</li>
+                                <li>Rotational nursing transitional duty assignments to preserve nurse retention</li>
+                            </ul>
+                        </div>
+
+                        <div style="margin-top: auto; padding-top: 1rem; border-top: 1px solid var(--border-color);">
+                            <a href="services.html#sectors" class="btn btn-sm btn-outline" style="width: 100%; text-align: center;">View Healthcare Advisory &rarr;</a>
+                        </div>
+                    </div>
+
+                    <!-- 4. Warehousing & Fleet Logistics -->
+                    <div class="telemetry-card js-reveal">
+                        <div class="telemetry-header">
+                            <div>
+                                <h3 style="font-size: 1.15rem; font-weight: 600;">Warehousing & Fleet Logistics</h3>
+                                <span style="font-size: 0.75rem; color: var(--text-muted); font-weight: 400;">Class Codes: 7219, 8292, 7380, 8291</span>
+                            </div>
+                            <span class="telemetry-badge high">High Severity</span>
+                        </div>
+
+                        <div class="telemetry-risk-meter">
+                            <div class="telemetry-risk-labels">
+                                <span>Loss Frequency: 74%</span>
+                                <span>Claim Severity: 68%</span>
+                            </div>
+                            <div class="telemetry-bar-bg" style="margin-top: 0.4rem;">
+                                <div class="telemetry-bar-fill high" style="width: 68%;"></div>
+                            </div>
+                        </div>
+
+                        <div class="telemetry-data-callout">
+                            <p><strong>Primary Loss Driver:</strong> Forklift loading dock collisions and high-velocity parcel sorting sprains drive spike loss severity during seasonal order peaks.</p>
+                        </div>
+
+                        <div class="telemetry-protocol-block" style="margin-bottom: 1.5rem;">
+                            <h5>Incident Escalation Protocols</h5>
+                            <ul>
+                                <li>Telematics speed and impact geofencing data capture at moment of collision</li>
+                                <li>Multi-jurisdiction interstate reporting coordination for highway incidents</li>
+                                <li>Dock interlock and vehicle restraint barrier structural inspections</li>
+                            </ul>
+                        </div>
+
+                        <div style="margin-top: auto; padding-top: 1rem; border-top: 1px solid var(--border-color);">
+                            <a href="services.html#sectors" class="btn btn-sm btn-outline" style="width: 100%; text-align: center;">View Logistics Advisory &rarr;</a>
+                        </div>
+                    </div>
+
+                    <!-- 5. Retail Chains & Wholesale -->
+                    <div class="telemetry-card js-reveal">
+                        <div class="telemetry-header">
+                            <div>
+                                <h3 style="font-size: 1.15rem; font-weight: 600;">Retail Networks & Wholesale</h3>
+                                <span style="font-size: 0.75rem; color: var(--text-muted); font-weight: 400;">Class Codes: 8017, 8018, 8033, 8006</span>
+                            </div>
+                            <span class="telemetry-badge moderate">Moderate Exposure</span>
+                        </div>
+
+                        <div class="telemetry-risk-meter">
+                            <div class="telemetry-risk-labels">
+                                <span>Loss Frequency: 65%</span>
+                                <span>Claim Severity: 42%</span>
+                            </div>
+                            <div class="telemetry-bar-bg" style="margin-top: 0.4rem;">
+                                <div class="telemetry-bar-fill" style="width: 53%;"></div>
+                            </div>
+                        </div>
+
+                        <div class="telemetry-data-callout">
+                            <p><strong>Primary Loss Driver:</strong> Sales-floor slips on smooth surfaces and stockroom rolling ladder falls generate persistent claim frequency across multi-store chains.</p>
+                        </div>
+
+                        <div class="telemetry-protocol-block" style="margin-bottom: 1.5rem;">
+                            <h5>Incident Escalation Protocols</h5>
+                            <ul>
+                                <li>Digital CCTV footage export and slip-meter floor coefficient verification</li>
+                                <li>Seasonal staff safety onboarding verification within 24 hours of hire</li>
+                                <li>Stockroom tiered merchandise weight limits and ladder inspection tagging</li>
+                            </ul>
+                        </div>
+
+                        <div style="margin-top: auto; padding-top: 1rem; border-top: 1px solid var(--border-color);">
+                            <a href="services.html#sectors" class="btn btn-sm btn-outline" style="width: 100%; text-align: center;">View Retail Advisory &rarr;</a>
+                        </div>
+                    </div>
+
+                    <!-- 6. Professional & Corporate Offices -->
+                    <div class="telemetry-card js-reveal">
+                        <div class="telemetry-header">
+                            <div>
+                                <h3 style="font-size: 1.15rem; font-weight: 600;">Corporate Offices & Tech</h3>
+                                <span style="font-size: 0.75rem; color: var(--text-muted); font-weight: 400;">Class Codes: 8810, 8742, 8601, 8803</span>
+                            </div>
+                            <span class="telemetry-badge moderate">Moderate Exposure</span>
+                        </div>
+
+                        <div class="telemetry-risk-meter">
+                            <div class="telemetry-risk-labels">
+                                <span>Loss Frequency: 34%</span>
+                                <span>Claim Severity: 38%</span>
+                            </div>
+                            <div class="telemetry-bar-bg" style="margin-top: 0.4rem;">
+                                <div class="telemetry-bar-fill" style="width: 36%;"></div>
+                            </div>
+                        </div>
+
+                        <div class="telemetry-data-callout">
+                            <p><strong>Primary Loss Driver:</strong> Remote home-office repetitive strain (carpal tunnel, cervical tension) and delayed injury reporting leading to complex medical disputes.</p>
+                        </div>
+
+                        <div class="telemetry-protocol-block" style="margin-bottom: 1.5rem;">
+                            <h5>Incident Escalation Protocols</h5>
+                            <ul>
+                                <li>Remote telehealth ergonomic assessment certification within 48 hours</li>
+                                <li>Statutory telecommuter home-jurisdiction policy alignment review</li>
+                                <li>Executive compensation payroll ceiling application audit</li>
+                            </ul>
+                        </div>
+
+                        <div style="margin-top: auto; padding-top: 1rem; border-top: 1px solid var(--border-color);">
+                            <a href="services.html#sectors" class="btn btn-sm btn-outline" style="width: 100%; text-align: center;">View Office Advisory &rarr;</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 04 — COVERAGE GAP ANALYSIS -->
         <section class="section js-reveal">
             <div class="container">
                 <div class="text-center">
@@ -568,7 +811,7 @@
                 <div class="grid"
                     style="grid-template-columns: 1fr 1fr; align-items: center; background: var(--bg-main); border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--border-color);">
                     <div
-                        style="position: relative; height: 100%; min-height: 500px; background: url('https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&q=80&w=1400') center/cover;">
+                        style="position: relative; height: 100%; min-height: 500px; background: url('assets/images/claims-guidance.jpg') center/cover no-repeat;">
                         <!-- Floating Claim Status UI -->
                         <div class="claim-status-card"
                             style="position: absolute; bottom: 2rem; right: -2rem; background: var(--glass-bg); backdrop-filter: blur(10px); padding: 1.5rem; border-radius: var(--radius-md); box-shadow: var(--shadow-lg); width: 300px; border: 1px solid var(--glass-border);">

@@ -9,6 +9,76 @@
     }
 }
 
+/* 1024px to 1340px Alone: Keep hamburger button in all navbars & keep all navlinks and CTA button in center alignment in sidebar menu */
+@media (min-width: 1024px) and (max-width: 1340px) {
+    .nav-links {
+        display: none !important; /* Hide main nav, handled by hamburger */
+    }
+    
+    .nav-controls .js-theme-toggle,
+    .nav-controls .js-dir-toggle,
+    .nav-controls .btn {
+        display: none !important;
+    }
+    
+    .hamburger {
+        display: flex !important; /* Keep hamburger button visible */
+    }
+
+    .mobile-menu {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        text-align: center !important;
+    }
+
+    .mobile-menu .js-menu-close {
+        align-self: flex-end !important;
+    }
+
+    [dir="rtl"] .mobile-menu .js-menu-close {
+        align-self: flex-start !important;
+    }
+
+    .mobile-nav-links {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        text-align: center !important;
+        width: 100% !important;
+        gap: 1.5rem !important;
+        margin: 1.5rem 0 1rem !important;
+    }
+
+    .mobile-nav-link {
+        text-align: center !important;
+        width: 100% !important;
+        display: block !important;
+    }
+
+    .mobile-controls {
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        width: 100% !important;
+        margin: 0.5rem auto 1rem !important;
+    }
+
+    .mobile-menu .btn,
+    .mobile-menu a.btn,
+    .mobile-menu .btn-primary {
+        display: inline-flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        text-align: center !important;
+        align-self: center !important;
+        margin: 0.75rem auto 0 !important;
+        width: 100% !important;
+        max-width: 240px !important;
+    }
+}
+
 /* Max Width 1024px (Tablet Landscape & Smaller Desktop) */
 @media (max-width: 1024px) {
     .nav-links {
@@ -23,6 +93,46 @@
     
     .hamburger {
         display: flex;
+    }
+
+    .mobile-menu {
+        align-items: center;
+        text-align: center;
+    }
+
+    .mobile-nav-links {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        width: 100%;
+    }
+
+    .mobile-nav-link {
+        text-align: center;
+        width: 100%;
+        display: block;
+    }
+
+    .mobile-controls {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
+
+    .mobile-menu .btn,
+    .mobile-menu a.btn,
+    .mobile-menu .btn-primary {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        align-self: center;
+        margin: 0.75rem auto 0;
+        width: 100%;
+        max-width: 240px;
     }
     
     .footer-grid {
@@ -103,7 +213,7 @@
     }
     
     /* Card grid layouts: Enforce 2 columns for even cards */
-    .grid, .services-grid, .framework-grid, .coverage-grid, .benefits-grid, .resources-grid, .strip-grid, .grid-4-to-2, .grid-3-to-2-1 {
+    .grid, .services-grid, .framework-grid, .coverage-grid, .benefits-grid, .resources-grid, .strip-grid, .grid-4-to-2, .grid-3-to-2-1, .sector-grid {
         grid-template-columns: repeat(2, 1fr) !important;
     }
     
@@ -120,11 +230,196 @@
         width: calc(50% - 1rem) !important;
         justify-self: center;
     }
+
+    /* Distinct Sector Layout Responsiveness */
+    .services-sector-grid, .telemetry-grid, .coverage-row-grid, .sector-panel.active {
+        grid-template-columns: 1fr !important;
+    }
+    .sector-panel.active {
+        padding: 2rem 1.5rem !important;
+        gap: 2rem !important;
+    }
+    .coverage-row-grid {
+        padding: 1.5rem !important;
+    }
+    /* Home 1 Sector Explorer Mobile Alignment */
+    .sector-nav-pills {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        width: 100% !important;
+        max-width: 300px !important;
+        margin: 0 auto 2rem !important;
+        gap: 0.625rem !important;
+    }
+    .sector-pill {
+        width: 100% !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        text-align: center !important;
+        padding: 0.75rem 1.25rem !important;
+        font-size: 0.9375rem !important;
+        box-sizing: border-box !important;
+    }
+    .sector-status-bar {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        width: 100% !important;
+        gap: 0.5rem !important;
+        margin: 0 auto 1.25rem !important;
+        text-align: center !important;
+    }
+    .sector-severity-chip,
+    .sector-status-bar .coverage-code-pill {
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        text-align: center !important;
+        width: 100% !important;
+        max-width: 260px !important;
+        padding: 0.45rem 1rem !important;
+        font-size: 0.75rem !important;
+        line-height: 1.4 !important;
+        border-radius: var(--radius-full) !important;
+        box-sizing: border-box !important;
+        white-space: nowrap !important;
+    }
+    .sector-profile-col {
+        align-items: center !important;
+        text-align: center !important;
+    }
+    .sector-profile-title,
+    .sector-profile-desc {
+        text-align: center !important;
+    }
+    .sector-profile-col a.btn {
+        align-self: center !important;
+        margin: 1.5rem auto 0 !important;
+    }
+
+    /* Home 2 Sector Telemetry Header Mobile Alignment */
+    .telemetry-header {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        text-align: center !important;
+        gap: 0.75rem !important;
+        width: 100% !important;
+    }
+    .telemetry-header > div {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        text-align: center !important;
+        width: 100% !important;
+        gap: 0.35rem !important;
+    }
+    .telemetry-header h3 {
+        text-align: center !important;
+        width: 100% !important;
+    }
+    .telemetry-badge {
+        align-self: center !important;
+        margin: 0 auto !important;
+    }
+
+    /* Services Sector Header Mobile Alignment */
+    .service-sector-header {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        text-align: center !important;
+        gap: 0.75rem !important;
+    }
+    .service-sector-title-wrap {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        text-align: center !important;
+        width: 100% !important;
+    }
+    .service-sector-title-wrap h3 {
+        text-align: center !important;
+        width: 100% !important;
+        margin-bottom: 0.35rem !important;
+    }
+    .service-sector-tag {
+        text-align: center !important;
+        display: block !important;
+        width: 100% !important;
+    }
+    .service-sector-header .coverage-code-pill {
+        align-self: center !important;
+        margin: 0 auto !important;
+    }
+
+    /* Coverage Sector Row Header Mobile Alignment (One-by-One Stacking) */
+    .coverage-row-header {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        text-align: center !important;
+        gap: 1rem !important;
+        padding: 1.5rem 1.25rem !important;
+    }
+    .coverage-row-title {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        text-align: center !important;
+        gap: 0.625rem !important;
+        width: 100% !important;
+    }
+    .coverage-row-title svg {
+        margin: 0 auto 0.25rem auto !important;
+    }
+    .coverage-row-title > div {
+        width: 100% !important;
+        text-align: center !important;
+    }
+    .coverage-row-title h3 {
+        text-align: center !important;
+        width: 100% !important;
+        margin: 0 !important;
+        font-size: 1.125rem !important;
+        line-height: 1.35 !important;
+    }
+    .coverage-row-title .coverage-code-pill {
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        text-align: center !important;
+        align-self: center !important;
+        margin: 0 auto !important;
+        white-space: normal !important;
+        max-width: 100% !important;
+        padding: 0.35rem 0.85rem !important;
+        line-height: 1.4 !important;
+    }
+    .coverage-row-header > div:last-child {
+        width: 100% !important;
+        display: flex !important;
+        justify-content: center !important;
+    }
+    .coverage-row-header .btn {
+        width: 100% !important;
+        max-width: 280px !important;
+        margin: 0 auto !important;
+        text-align: center !important;
+    }
 }
 
 /* Max Width 576px (Small Mobile) */
 @media (max-width: 576px) {
-    .grid, .services-grid, .framework-grid, .coverage-grid, .benefits-grid, .resources-grid, .strip-grid, .grid-4-to-2, .grid-3-to-2-1 {
+    .grid, .services-grid, .framework-grid, .coverage-grid, .benefits-grid, .resources-grid, .strip-grid, .grid-4-to-2, .grid-3-to-2-1, .sector-grid, .sector-metric-strip {
         grid-template-columns: 1fr !important;
     }
     

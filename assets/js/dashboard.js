@@ -42,6 +42,9 @@ function activateTab(link, panes, links) {
     const targetPane = document.getElementById(targetId);
     if(targetPane) {
         targetPane.classList.add('active');
+        if(targetId === 'risk') {
+            initSimulatedCharts();
+        }
     }
     
     // Close mobile menu if open
@@ -58,10 +61,31 @@ function activateTab(link, panes, links) {
 function initSimulatedCharts() {
     // Animate bars in Risk Overview
     const bars = document.querySelectorAll('.dash-chart-bar');
+    if (!bars.length) return;
+    
+    const isMobile = window.innerWidth <= 768;
+
     bars.forEach(bar => {
-        const targetHeight = bar.getAttribute('data-height');
-        setTimeout(() => {
-            bar.style.height = targetHeight + '%';
-        }, 500);
+        const targetVal = bar.getAttribute('data-height');
+        if (isMobile) {
+            bar.style.height = '100%';
+            bar.style.width = '0%';
+            setTimeout(() => {
+                bar.style.width = targetVal + '%';
+            }, 100);
+        } else {
+            bar.style.width = '100%';
+            bar.style.height = '0%';
+            setTimeout(() => {
+                bar.style.height = targetVal + '%';
+            }, 100);
+        }
     });
 }
+
+window.addEventListener('resize', () => {
+    const riskPane = document.getElementById('risk');
+    if (riskPane && riskPane.classList.contains('active')) {
+        initSimulatedCharts();
+    }
+});

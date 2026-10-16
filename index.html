@@ -169,7 +169,7 @@
         .progress-circle span {
             position: relative;
             z-index: 1;
-            font-weight: 700;
+            font-weight: 600;
             font-family: var(--font-heading);
             color: var(--text-primary);
         }
@@ -187,8 +187,8 @@
         .workplace-image {
             height: 100%;
             min-height: 600px;
-            background-color: var(--bg-tertiary); /* Placeholder for image */
-            background-image: url('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=1400');
+            background-color: var(--bg-tertiary);
+            background-image: url('assets/images/workplace-safety.jpg');
             background-size: cover;
             background-position: center;
             position: relative;
@@ -241,7 +241,7 @@
         .frame-num {
             font-size: 3rem;
             font-family: var(--font-heading);
-            font-weight: 800;
+            font-weight: 600;
             color: var(--blue-primary);
             position: absolute;
             top: 1rem;
@@ -461,7 +461,427 @@
             </div>
         </section>
 
-        <!-- SECTION 04 — ADVISORY FRAMEWORK -->
+        <!-- SECTION 04 — INTERACTIVE SECTOR ADVISORY SHOWCASE -->
+        <section class="section" id="sectors" style="background: var(--bg-secondary);">
+            <div class="container js-reveal">
+                <div class="text-center" style="max-width: 760px; margin: 0 auto 2.5rem;">
+                    <span class="badge">Industry Focus</span>
+                    <h2 class="text-h2">Tailored Advisory by Industry Sector</h2>
+                    <p class="text-secondary" style="margin-top: 1rem; font-weight: 400;">
+                        Operational hazards, statutory classification rules, and underwriting loss profiles differ across commercial sectors. Select an industry to explore our customized coverage advisory and workforce safety frameworks.
+                    </p>
+                </div>
+
+                <div class="sector-explorer">
+                    <!-- Nav Pills -->
+                    <div class="sector-nav-pills" role="tablist">
+                        <button class="sector-pill active" data-sector="construction" role="tab" aria-selected="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 20h20M5 20V8l7-5 7 5v12M9 12h6M9 16h6"/></svg>
+                            Construction
+                        </button>
+                        <button class="sector-pill" data-sector="manufacturing" role="tab" aria-selected="false">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                            Manufacturing
+                        </button>
+                        <button class="sector-pill" data-sector="healthcare" role="tab" aria-selected="false">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                            Healthcare
+                        </button>
+                        <button class="sector-pill" data-sector="logistics" role="tab" aria-selected="false">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+                            Logistics
+                        </button>
+                        <button class="sector-pill" data-sector="retail" role="tab" aria-selected="false">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+                            Retail
+                        </button>
+                        <button class="sector-pill" data-sector="office" role="tab" aria-selected="false">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+                            Office & Professional
+                        </button>
+                    </div>
+
+                    <!-- Panel 1: Construction -->
+                    <div class="sector-panel active" id="sector-panel-construction" role="tabpanel">
+                        <div class="sector-profile-col">
+                            <div>
+                                <div class="sector-status-bar">
+                                    <span class="sector-severity-chip">High Severity Risk</span>
+                                    <span class="coverage-code-pill">Codes: 5403, 5445, 5606</span>
+                                </div>
+                                <h3 class="sector-profile-title">Construction & Contracting</h3>
+                                <p class="sector-profile-desc">
+                                    Elevation exposure, heavy equipment operation, and multi-tier subcontracting require vigilant payroll segregation and strict subcontractor certification compliance.
+                                </p>
+                            </div>
+
+                            <div class="sector-metric-strip">
+                                <div class="sector-metric-item">
+                                    <h5>Primary Loss Trigger</h5>
+                                    <p>Falls & Struck-By Hazards</p>
+                                </div>
+                                <div class="sector-metric-item">
+                                    <h5>Advisory Impact</h5>
+                                    <p>EMR Shielding & COI Audits</p>
+                                </div>
+                            </div>
+
+                            <a href="services.html#sectors" class="btn btn-primary" style="align-self: flex-start;">
+                                Explore Construction Advisory &rarr;
+                            </a>
+                        </div>
+
+                        <div class="sector-solutions-col">
+                            <div class="sector-solution-card">
+                                <h4>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                                    Industry-Specific Coverage Advisory
+                                </h4>
+                                <ul>
+                                    <li>Trade payroll split auditing to isolate drywall, carpentry, and supervisory rates</li>
+                                    <li>Subcontractor Certificate of Insurance (COI) validation & waiver of subrogation tracking</li>
+                                    <li>Wrap-Up insurance (OCIP/CCIP) analysis and cross-state statutory filing reviews</li>
+                                    <li>Experience Modification Rate (EMR) containment modeling to safeguard bidding status</li>
+                                </ul>
+                            </div>
+
+                            <div class="sector-solution-card">
+                                <h4>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><polyline points="17 11 19 13 23 9"/></svg>
+                                    Employee Protection Solutions
+                                </h4>
+                                <ul>
+                                    <li>OSHA 1926 Subpart M 100% fall protection and anchor point verification program</li>
+                                    <li>Job Safety Analysis (JSA) frameworks and daily pre-task jobsite hazard reviews</li>
+                                    <li>Immediate telephonic nurse triage protocols to manage injury severity at the jobsite</li>
+                                    <li>Transitional modified-duty return-to-work program tailored for skilled trade personnel</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Panel 2: Manufacturing -->
+                    <div class="sector-panel" id="sector-panel-manufacturing" role="tabpanel">
+                        <div class="sector-profile-col">
+                            <div>
+                                <div class="sector-status-bar">
+                                    <span class="sector-severity-chip">High Frequency & Severity</span>
+                                    <span class="coverage-code-pill">Codes: 3632, 3179, 3076</span>
+                                </div>
+                                <h3 class="sector-profile-title">Manufacturing & Fabrication</h3>
+                                <p class="sector-profile-desc">
+                                    Fixed machinery lines, robotic cells, high-heat fabrication, and continuous noise require comprehensive machine safeguarding and occupational illness riders.
+                                </p>
+                            </div>
+
+                            <div class="sector-metric-strip">
+                                <div class="sector-metric-item">
+                                    <h5>Primary Loss Trigger</h5>
+                                    <p>Machine Pinch & Noise Exposure</p>
+                                </div>
+                                <div class="sector-metric-item">
+                                    <h5>Advisory Impact</h5>
+                                    <p>Dual-Wage Audit Carve-Outs</p>
+                                </div>
+                            </div>
+
+                            <a href="services.html#sectors" class="btn btn-primary" style="align-self: flex-start;">
+                                Explore Manufacturing Advisory &rarr;
+                            </a>
+                        </div>
+
+                        <div class="sector-solutions-col">
+                            <div class="sector-solution-card">
+                                <h4>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                                    Industry-Specific Coverage Advisory
+                                </h4>
+                                <ul>
+                                    <li>Dual-wage machinery operator classification auditing to eliminate overcharges</li>
+                                    <li>Occupational disease endorsements covering metal fumes, airborne dust, and chemicals</li>
+                                    <li>Overtime deduction and shift premium exclusion captured for annual carrier audit defense</li>
+                                    <li>Large-deductible policy retention modeling for multi-plant industrial operations</li>
+                                </ul>
+                            </div>
+
+                            <div class="sector-solution-card">
+                                <h4>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><polyline points="17 11 19 13 23 9"/></svg>
+                                    Employee Protection Solutions
+                                </h4>
+                                <ul>
+                                    <li>Lockout / Tagout (LOTO) energy isolation program and machine barrier interlocks</li>
+                                    <li>OSHA-compliant Hearing Conservation Program and plant floor sound mapping</li>
+                                    <li>Assembly line ergonomic cell redesign to prevent chronic repetitive strain (MSDs)</li>
+                                    <li>Hazard Communication (HazCom/GHS) chemical inventory protocols and eyewash reviews</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Panel 3: Healthcare -->
+                    <div class="sector-panel" id="sector-panel-healthcare" role="tabpanel">
+                        <div class="sector-profile-col">
+                            <div>
+                                <div class="sector-status-bar">
+                                    <span class="sector-severity-chip">High Frequency Claims</span>
+                                    <span class="coverage-code-pill">Codes: 8824, 8832, 9040</span>
+                                </div>
+                                <h3 class="sector-profile-title">Healthcare & Care Facilities</h3>
+                                <p class="sector-profile-desc">
+                                    Patient transfers, needle-stick incidents, biological pathogen exposures, and clinical workplace stress require structured medical safety engineering.
+                                </p>
+                            </div>
+
+                            <div class="sector-metric-strip">
+                                <div class="sector-metric-item">
+                                    <h5>Primary Loss Trigger</h5>
+                                    <p>Patient Transfer Strains</p>
+                                </div>
+                                <div class="sector-metric-item">
+                                    <h5>Advisory Impact</h5>
+                                    <p>Loss Portfolio Consolidation</p>
+                                </div>
+                            </div>
+
+                            <a href="services.html#sectors" class="btn btn-primary" style="align-self: flex-start;">
+                                Explore Healthcare Advisory &rarr;
+                            </a>
+                        </div>
+
+                        <div class="sector-solutions-col">
+                            <div class="sector-solution-card">
+                                <h4>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                                    Industry-Specific Coverage Advisory
+                                </h4>
+                                <ul>
+                                    <li>Clinical vs. administrative payroll segregation (physician, nursing, clerical, facilities)</li>
+                                    <li>Bloodborne pathogen & communicable disease exposure coverage endorsements</li>
+                                    <li>Workplace violence policy riders and post-incident psychological support coverage</li>
+                                    <li>Centralized multi-facility loss reserve auditing to mitigate carrier over-reserving</li>
+                                </ul>
+                            </div>
+
+                            <div class="sector-solution-card">
+                                <h4>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><polyline points="17 11 19 13 23 9"/></svg>
+                                    Employee Protection Solutions
+                                </h4>
+                                <ul>
+                                    <li>Safe Patient Handling & Mobility (SPHM) with zero-lift mechanical transfer devices</li>
+                                    <li>Needle-stick and biological sharps safety workflows adhering to OSHA 1910.1030</li>
+                                    <li>Clinical conflict de-escalation training and emergency room security panic protocols</li>
+                                    <li>24/7 telephonic nurse triage providing instantaneous clinical routing for injured workers</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Panel 4: Logistics -->
+                    <div class="sector-panel" id="sector-panel-logistics" role="tabpanel">
+                        <div class="sector-profile-col">
+                            <div>
+                                <div class="sector-status-bar">
+                                    <span class="sector-severity-chip">High Velocity Exposure</span>
+                                    <span class="coverage-code-pill">Codes: 7219, 8292, 7380</span>
+                                </div>
+                                <h3 class="sector-profile-title">Logistics & Warehousing</h3>
+                                <p class="sector-profile-desc">
+                                    High-bay storage, forklift vehicular traffic, loading dock crush exposures, and cross-state transit require cross-border coverage compliance.
+                                </p>
+                            </div>
+
+                            <div class="sector-metric-strip">
+                                <div class="sector-metric-item">
+                                    <h5>Primary Loss Trigger</h5>
+                                    <p>Forklift Traffic & Dock Hazards</p>
+                                </div>
+                                <div class="sector-metric-item">
+                                    <h5>Advisory Impact</h5>
+                                    <p>Multi-State Endorsements</p>
+                                </div>
+                            </div>
+
+                            <a href="services.html#sectors" class="btn btn-primary" style="align-self: flex-start;">
+                                Explore Logistics Advisory &rarr;
+                            </a>
+                        </div>
+
+                        <div class="sector-solutions-col">
+                            <div class="sector-solution-card">
+                                <h4>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                                    Industry-Specific Coverage Advisory
+                                </h4>
+                                <ul>
+                                    <li>Warehouse storage (8292) vs. local trucking (7219) split allocation audit verification</li>
+                                    <li>Multi-state & cross-border statutory transit endorsements (Items 3.A & 3.C)</li>
+                                    <li>Independent contractor vs. statutory employee classification audits for delivery fleets</li>
+                                    <li>Fleet telematics safety score integration used to negotiate carrier loss credits</li>
+                                </ul>
+                            </div>
+
+                            <div class="sector-solution-card">
+                                <h4>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><polyline points="17 11 19 13 23 9"/></svg>
+                                    Employee Protection Solutions
+                                </h4>
+                                <ul>
+                                    <li>Forklift and Powered Industrial Truck (PIT) safety certification and pedestrian walkways</li>
+                                    <li>Ergonomic manual material handling, load-limit guidelines, and pallet stability enforcement</li>
+                                    <li>Loading dock vehicle restraint locks, barrier interlocks, and high-rack fall arrest rigging</li>
+                                    <li>Structured transitional light-duty program for fulfillment and sortation teams</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Panel 5: Retail -->
+                    <div class="sector-panel" id="sector-panel-retail" role="tabpanel">
+                        <div class="sector-profile-col">
+                            <div>
+                                <div class="sector-status-bar">
+                                    <span class="sector-severity-chip moderate">Moderate Risk Profile</span>
+                                    <span class="coverage-code-pill">Codes: 8017, 8044, 8018</span>
+                                </div>
+                                <h3 class="sector-profile-title">Retail & Wholesale Trade</h3>
+                                <p class="sector-profile-desc">
+                                    High customer volume, inventory replenishment, stockroom ladder work, and seasonal hiring spikes demand automated payroll reporting and slip/fall prevention.
+                                </p>
+                            </div>
+
+                            <div class="sector-metric-strip">
+                                <div class="sector-metric-item">
+                                    <h5>Primary Loss Trigger</h5>
+                                    <p>Slip, Trip & Fall Incidents</p>
+                                </div>
+                                <div class="sector-metric-item">
+                                    <h5>Advisory Impact</h5>
+                                    <p>Seasonal Payroll Audit Prep</p>
+                                </div>
+                            </div>
+
+                            <a href="services.html#sectors" class="btn btn-primary" style="align-self: flex-start;">
+                                Explore Retail Advisory &rarr;
+                            </a>
+                        </div>
+
+                        <div class="sector-solutions-col">
+                            <div class="sector-solution-card">
+                                <h4>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                                    Industry-Specific Coverage Advisory
+                                </h4>
+                                <ul>
+                                    <li>Seasonal and temporary employee coverage reporting with flexible payroll alignment</li>
+                                    <li>Sales floor vs. backroom warehouse and local delivery classification separation</li>
+                                    <li>Premises liability third-party subrogation recovery coordination for shared retail space</li>
+                                    <li>Pre-audit preparation to reconcile part-time employee caps and overtime wage multipliers</li>
+                                </ul>
+                            </div>
+
+                            <div class="sector-solution-card">
+                                <h4>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><polyline points="17 11 19 13 23 9"/></svg>
+                                    Employee Protection Solutions
+                                </h4>
+                                <ul>
+                                    <li>Slip, trip, and fall mitigation: entrance traction mats, moisture sensors, and rapid spill kits</li>
+                                    <li>Stockroom rolling ladder safety locks, safety box-cutter protocols, and overhead shelf securement</li>
+                                    <li>Point-of-sale checkout ergonomic retrofits and anti-fatigue standing floor mats</li>
+                                    <li>Customer dispute de-escalation guidelines and prompt incident documentation workflows</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Panel 6: Office & Professional -->
+                    <div class="sector-panel" id="sector-panel-office" role="tabpanel">
+                        <div class="sector-profile-col">
+                            <div>
+                                <div class="sector-status-bar">
+                                    <span class="sector-severity-chip moderate">Low Hazard / High Telecommute</span>
+                                    <span class="coverage-code-pill">Codes: 8810, 8742, 8803</span>
+                                </div>
+                                <h3 class="sector-profile-title">Office & Professional Services</h3>
+                                <p class="sector-profile-desc">
+                                    Low apparent physical exposure masks widespread cumulative trauma, ergonomic strain, and remote workforce jurisdictional compliance across distributed workforces.
+                                </p>
+                            </div>
+
+                            <div class="sector-metric-strip">
+                                <div class="sector-metric-item">
+                                    <h5>Primary Loss Trigger</h5>
+                                    <p>Ergonomic Repetitive Strain (RSI)</p>
+                                </div>
+                                <div class="sector-metric-item">
+                                    <h5>Advisory Impact</h5>
+                                    <p>Code 8810 Rate Defense</p>
+                                </div>
+                            </div>
+
+                            <a href="services.html#sectors" class="btn btn-primary" style="align-self: flex-start;">
+                                Explore Professional Advisory &rarr;
+                            </a>
+                        </div>
+
+                        <div class="sector-solutions-col">
+                            <div class="sector-solution-card">
+                                <h4>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                                    Industry-Specific Coverage Advisory
+                                </h4>
+                                <ul>
+                                    <li>Strict Clerical Office Employee (Code 8810) verification to capture lowest premium tier</li>
+                                    <li>Multi-state telecommuting policy endorsements ensuring remote worker coverage in all 50 states</li>
+                                    <li>Traveling executive, seminar, and client-visit out-of-territory policy riders</li>
+                                    <li>Cumulative trauma and repetitive strain injury (RSI) liability exposure mitigation</li>
+                                </ul>
+                            </div>
+
+                            <div class="sector-solution-card">
+                                <h4>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><polyline points="17 11 19 13 23 9"/></svg>
+                                    Employee Protection Solutions
+                                </h4>
+                                <ul>
+                                    <li>Virtual and on-site workstation ergonomic evaluations for screen, chair, and desk alignment</li>
+                                    <li>Standardized home-office safety checklists and telecommuter hazard self-inspection guides</li>
+                                    <li>Early-intervention physical therapy pathways for neck, wrist, and lumbar discomfort</li>
+                                    <li>Workplace wellness programs, screen break reminders, and ergonomic hardware guidelines</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    const pills = document.querySelectorAll('.sector-pill');
+                    const panels = document.querySelectorAll('.sector-panel');
+                    pills.forEach(pill => {
+                        pill.addEventListener('click', () => {
+                            const sector = pill.getAttribute('data-sector');
+                            pills.forEach(p => {
+                                p.classList.remove('active');
+                                p.setAttribute('aria-selected', 'false');
+                            });
+                            panels.forEach(pan => pan.classList.remove('active'));
+                            pill.classList.add('active');
+                            pill.setAttribute('aria-selected', 'true');
+                            const targetPanel = document.getElementById('sector-panel-' + sector);
+                            if (targetPanel) {
+                                targetPanel.classList.add('active');
+                            }
+                        });
+                    });
+                });
+            </script>
+        </section>
+
+        <!-- SECTION 05 — ADVISORY FRAMEWORK -->
         <section class="section js-reveal">
             <div class="container">
                 <div style="text-align: center; max-width: 600px; margin: 0 auto;">

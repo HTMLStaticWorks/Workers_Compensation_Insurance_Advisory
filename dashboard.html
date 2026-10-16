@@ -109,7 +109,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: 700;
+            font-weight: 600;
         }
 
         .dash-hamburger {
@@ -159,7 +159,7 @@
         .widget-value {
             font-size: 2rem;
             font-family: var(--font-heading);
-            font-weight: 700;
+            font-weight: 600;
             color: var(--text-primary);
         }
 
@@ -266,19 +266,118 @@
 
         /* Chart */
         .dash-chart {
-            height: 250px;
+            height: 260px;
             display: flex;
             align-items: flex-end;
             justify-content: space-around;
-            padding-top: 2rem;
+            padding-top: 1.5rem;
+            box-sizing: border-box;
         }
-        .dash-chart-bar-wrap { width: 10%; display: flex; flex-direction: column; align-items: center; gap: 0.5rem; }
+        .dash-chart-bar-wrap {
+            height: 100%;
+            width: 14%;
+            max-width: 70px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 0.75rem;
+            box-sizing: border-box;
+        }
+        .dash-chart-bar-track {
+            order: 1;
+            width: 34px;
+            height: 170px;
+            background: var(--bg-secondary);
+            border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+            display: flex;
+            align-items: flex-end;
+            overflow: hidden;
+            position: relative;
+        }
         .dash-chart-bar {
             width: 100%;
             background: var(--blue-primary);
-            border-radius: 4px 4px 0 0;
+            border-radius: var(--radius-sm) var(--radius-sm) 0 0;
             height: 0;
-            transition: height 1s ease-out;
+            transition: height 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .dash-chart-bar-info {
+            order: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.25rem;
+            width: 100%;
+            text-align: center;
+        }
+        .dash-chart-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-secondary);
+            white-space: nowrap;
+        }
+        .dash-chart-val {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--blue-primary);
+        }
+
+        /* 1024px to 1340px Alone: Keep hamburger button & center navlinks/CTA in sidebar */
+        @media (min-width: 1024px) and (max-width: 1340px) {
+            .dash-sidebar {
+                position: fixed;
+                left: -280px;
+                top: 0;
+                bottom: 0;
+            }
+            [dir="rtl"] .dash-sidebar { left: auto; right: -280px; }
+            .dash-sidebar.open { 
+                left: 0; 
+                box-shadow: var(--shadow-lg); 
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            [dir="rtl"] .dash-sidebar.open { left: auto; right: 0; }
+            .dash-hamburger { display: block !important; }
+            .dash-header { padding: 0 1.5rem; }
+            .dash-content-area { padding: 2rem 1.5rem; }
+            
+            .sidebar-backdrop {
+                display: none;
+                position: fixed;
+                inset: 0;
+                background: rgba(0,0,0,0.5);
+                z-index: 90;
+            }
+            .sidebar-backdrop.active { display: block; }
+
+            .dash-sidebar.open .dash-nav {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                width: 100%;
+            }
+            .dash-sidebar.open .dash-nav-link {
+                justify-content: center;
+                text-align: center;
+                width: 100%;
+            }
+            .dash-sidebar.open .dash-user-menu {
+                display: flex;
+                justify-content: center;
+                width: 100%;
+            }
+            .dash-sidebar.open .dash-user-menu .btn {
+                max-width: 220px;
+                margin: 0 auto;
+                text-align: center;
+            }
         }
 
         @media (max-width: 1024px) {
@@ -376,6 +475,68 @@
                 padding-bottom: 3rem !important;
                 width: 100%;
                 min-width: 0;
+            }
+
+            /* Risk Overview Chart Mobile Alignment */
+            .dash-chart {
+                height: auto !important;
+                display: flex !important;
+                flex-direction: column !important;
+                align-items: stretch !important;
+                justify-content: flex-start !important;
+                gap: 1.25rem !important;
+                padding: 0 !important;
+            }
+            .dash-chart-bar-wrap {
+                width: 100% !important;
+                max-width: 100% !important;
+                height: auto !important;
+                display: flex !important;
+                flex-direction: column !important;
+                align-items: stretch !important;
+                justify-content: flex-start !important;
+                gap: 0.45rem !important;
+            }
+            .dash-chart-bar-info {
+                display: flex !important;
+                flex-direction: row !important;
+                justify-content: space-between !important;
+                align-items: center !important;
+                width: 100% !important;
+                margin: 0 !important;
+            }
+            .dash-chart-label {
+                font-size: 0.875rem !important;
+                font-weight: 500 !important;
+                color: var(--text-primary) !important;
+                text-transform: none !important;
+                letter-spacing: normal !important;
+                text-align: left !important;
+            }
+            [dir="rtl"] .dash-chart-label {
+                text-align: right !important;
+            }
+            .dash-chart-val {
+                font-size: 0.875rem !important;
+                font-weight: 600 !important;
+                color: var(--blue-primary) !important;
+            }
+            .dash-chart-bar-track {
+                order: 2 !important;
+                width: 100% !important;
+                height: 10px !important;
+                background: var(--bg-secondary) !important;
+                border-radius: var(--radius-full) !important;
+                display: block !important;
+                overflow: hidden !important;
+                position: relative !important;
+            }
+            .dash-chart-bar {
+                height: 100% !important;
+                width: 0;
+                background: var(--blue-primary) !important;
+                border-radius: var(--radius-full) !important;
+                transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1) !important;
             }
         }
     </style>
@@ -660,24 +821,49 @@
                         <h3 class="text-h3" style="font-size: 1.25rem; margin-bottom: 2rem;">Risk Exposure by Category</h3>
                         <div class="dash-chart">
                             <div class="dash-chart-bar-wrap">
-                                <div class="dash-chart-bar" data-height="30"></div>
-                                <span class="text-xs">Workplace</span>
+                                <div class="dash-chart-bar-info">
+                                    <span class="dash-chart-label">Workplace</span>
+                                    <span class="dash-chart-val">30%</span>
+                                </div>
+                                <div class="dash-chart-bar-track">
+                                    <div class="dash-chart-bar" data-height="30"></div>
+                                </div>
                             </div>
                             <div class="dash-chart-bar-wrap">
-                                <div class="dash-chart-bar" data-height="65"></div>
-                                <span class="text-xs">Claims</span>
+                                <div class="dash-chart-bar-info">
+                                    <span class="dash-chart-label">Claims</span>
+                                    <span class="dash-chart-val">65%</span>
+                                </div>
+                                <div class="dash-chart-bar-track">
+                                    <div class="dash-chart-bar" data-height="65"></div>
+                                </div>
                             </div>
                             <div class="dash-chart-bar-wrap">
-                                <div class="dash-chart-bar" data-height="20"></div>
-                                <span class="text-xs">Docs</span>
+                                <div class="dash-chart-bar-info">
+                                    <span class="dash-chart-label">Documentation</span>
+                                    <span class="dash-chart-val">20%</span>
+                                </div>
+                                <div class="dash-chart-bar-track">
+                                    <div class="dash-chart-bar" data-height="20"></div>
+                                </div>
                             </div>
                             <div class="dash-chart-bar-wrap">
-                                <div class="dash-chart-bar" data-height="15"></div>
-                                <span class="text-xs">Compliance</span>
+                                <div class="dash-chart-bar-info">
+                                    <span class="dash-chart-label">Compliance</span>
+                                    <span class="dash-chart-val">15%</span>
+                                </div>
+                                <div class="dash-chart-bar-track">
+                                    <div class="dash-chart-bar" data-height="15"></div>
+                                </div>
                             </div>
                             <div class="dash-chart-bar-wrap">
-                                <div class="dash-chart-bar" data-height="45"></div>
-                                <span class="text-xs">Renewal</span>
+                                <div class="dash-chart-bar-info">
+                                    <span class="dash-chart-label">Renewal</span>
+                                    <span class="dash-chart-val">45%</span>
+                                </div>
+                                <div class="dash-chart-bar-track">
+                                    <div class="dash-chart-bar" data-height="45"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
