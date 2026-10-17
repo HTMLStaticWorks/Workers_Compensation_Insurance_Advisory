@@ -1088,6 +1088,10 @@ textarea.form-control {
     border-bottom: 1px solid var(--border-color);
 }
 
+.service-sector-title-wrap {
+    min-width: 0;
+}
+
 .service-sector-title-wrap h3 {
     font-size: 1.35rem;
     font-weight: 600;
@@ -1238,6 +1242,8 @@ textarea.form-control {
     font-size: 0.75rem;
     font-weight: 600;
     color: var(--text-secondary);
+    white-space: nowrap;
+    flex-shrink: 0;
 }
 
 .coverage-row-grid {
