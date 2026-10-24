@@ -209,6 +209,12 @@ img {
     color: #FFF;
 }
 
+.btn-sm {
+    padding: 0.65rem 0.75rem;
+    font-size: 0.85rem;
+    white-space: nowrap;
+}
+
 /* Glass Panels */
 .glass-panel {
     background: var(--glass-bg);
@@ -1323,6 +1329,14 @@ textarea.form-control {
 .telemetry-card:hover {
     transform: translateY(-4px);
     border-color: var(--blue-primary);
+}
+
+.telemetry-card .btn {
+    width: 100%;
+    text-align: center;
+    white-space: nowrap;
+    padding: 0.65rem 0.75rem;
+    font-size: 0.85rem;
 }
 
 .telemetry-header {
